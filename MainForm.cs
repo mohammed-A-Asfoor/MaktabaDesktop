@@ -37,13 +37,22 @@ namespace MaktabaDesktop
             bookItemList = new BookItemList();
             orderList = new OrderList();
 
-            bookItemList.Populate();
-            orderList.Populate();
+            loadBookitemTable();
+            loadOrdersTable();
             
-            BooksItemsTable.DataSource = bookItemList.DataTable;
-            OrdersTable.DataSource = orderList.DataTable;
         }
-        
+        public void loadBookitemTable()
+        {
+            bookItemList.Populate();
+            BooksItemsTable.DataSource = bookItemList.DataTable;
+        }
+        public void loadOrdersTable()
+        {
+            OrdersTable.DataSource = orderList.DataTable;
+            orderList.Populate();
+        }
+
+
         private void BooksItemsTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             bookItemID = BooksItemsTable.CurrentRow.Cells[0].Value.ToString();
@@ -203,6 +212,31 @@ namespace MaktabaDesktop
             else
             {
                 MessageBox.Show("You need to Select a Book Item from the List");
+            }
+        }
+
+        private void refreashBtn_Click(object sender, EventArgs e)
+        {
+            loadBookitemTable();
+        }
+
+        private void RefreashBookItemBtn_Click(object sender, EventArgs e)
+        {
+            loadOrdersTable();
+        }
+
+        private void DeleteBookItemBtn_Click(object sender, EventArgs e)
+        {
+            if (bookItem == null)
+                MessageBox.Show("You Need to Select a Record First");
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to Delete This record?", "Confirm Deleting ", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    bookItemList.Delete(bookItem);
+                    loadBookitemTable();
+                } 
             }
         }
     }

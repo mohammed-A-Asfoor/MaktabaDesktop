@@ -29,9 +29,10 @@ namespace MaktabaDesktop
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.refreashBtn = new System.Windows.Forms.Button();
+            this.label23 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.titleText = new System.Windows.Forms.TextBox();
             this.autherText = new System.Windows.Forms.TextBox();
@@ -39,7 +40,7 @@ namespace MaktabaDesktop
             this.label10 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.ValueText = new System.Windows.Forms.TextBox();
-            this.button5 = new System.Windows.Forms.Button();
+            this.DeleteBookItemBtn = new System.Windows.Forms.Button();
             this.EditBookItemBtn = new System.Windows.Forms.Button();
             this.AddItemBtn = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -61,6 +62,10 @@ namespace MaktabaDesktop
             this.QuantityText = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.OrdersTable = new System.Windows.Forms.DataGridView();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.RefreashBookItemBtn = new System.Windows.Forms.Button();
+            this.label24 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.bookListforOrder = new System.Windows.Forms.ListBox();
             this.customerNameText = new System.Windows.Forms.TextBox();
@@ -92,44 +97,56 @@ namespace MaktabaDesktop
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
-            this.OrdersTable = new System.Windows.Forms.DataGridView();
-            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BooksItemsTable)).BeginInit();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.OrdersTable)).BeginInit();
+            this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.OrdersTable)).BeginInit();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(441, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1358, 68);
-            this.panel1.TabIndex = 3;
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.panel1);
             this.panel2.Controls.Add(this.panel3);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 68);
+            this.panel2.Location = new System.Drawing.Point(0, 57);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1358, 324);
+            this.panel2.Size = new System.Drawing.Size(1358, 360);
             this.panel2.TabIndex = 4;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.refreashBtn);
+            this.panel1.Controls.Add(this.label23);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1358, 36);
+            this.panel1.TabIndex = 6;
+            // 
+            // refreashBtn
+            // 
+            this.refreashBtn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.refreashBtn.Location = new System.Drawing.Point(1131, 0);
+            this.refreashBtn.Name = "refreashBtn";
+            this.refreashBtn.Size = new System.Drawing.Size(227, 36);
+            this.refreashBtn.TabIndex = 1;
+            this.refreashBtn.Text = "Refreash";
+            this.refreashBtn.UseVisualStyleBackColor = true;
+            this.refreashBtn.Click += new System.EventHandler(this.refreashBtn_Click);
+            // 
+            // label23
+            // 
+            this.label23.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label23.Location = new System.Drawing.Point(0, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(219, 36);
+            this.label23.TabIndex = 0;
+            this.label23.Text = "Book itmes Table";
             // 
             // panel3
             // 
@@ -152,7 +169,7 @@ namespace MaktabaDesktop
             this.panel3.Controls.Add(this.QuantityText);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 6);
+            this.panel3.Location = new System.Drawing.Point(0, 42);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1358, 318);
             this.panel3.TabIndex = 2;
@@ -194,7 +211,7 @@ namespace MaktabaDesktop
             // panel4
             // 
             this.panel4.Controls.Add(this.ValueText);
-            this.panel4.Controls.Add(this.button5);
+            this.panel4.Controls.Add(this.DeleteBookItemBtn);
             this.panel4.Controls.Add(this.EditBookItemBtn);
             this.panel4.Controls.Add(this.AddItemBtn);
             this.panel4.Controls.Add(this.label7);
@@ -215,14 +232,15 @@ namespace MaktabaDesktop
             this.ValueText.Size = new System.Drawing.Size(144, 23);
             this.ValueText.TabIndex = 30;
             // 
-            // button5
+            // DeleteBookItemBtn
             // 
-            this.button5.Location = new System.Drawing.Point(266, 78);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 20;
-            this.button5.Text = "Delete";
-            this.button5.UseVisualStyleBackColor = true;
+            this.DeleteBookItemBtn.Location = new System.Drawing.Point(266, 78);
+            this.DeleteBookItemBtn.Name = "DeleteBookItemBtn";
+            this.DeleteBookItemBtn.Size = new System.Drawing.Size(75, 23);
+            this.DeleteBookItemBtn.TabIndex = 20;
+            this.DeleteBookItemBtn.Text = "Delete";
+            this.DeleteBookItemBtn.UseVisualStyleBackColor = true;
+            this.DeleteBookItemBtn.Click += new System.EventHandler(this.DeleteBookItemBtn_Click);
             // 
             // EditBookItemBtn
             // 
@@ -305,7 +323,7 @@ namespace MaktabaDesktop
             this.BooksItemsTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.BooksItemsTable.Size = new System.Drawing.Size(1358, 197);
             this.BooksItemsTable.TabIndex = 2;
-            this.BooksItemsTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BooksItemsTable_CellClick);
+            this.BooksItemsTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OrdersTable_CellClick);
             // 
             // AddingDateFeild
             // 
@@ -410,13 +428,54 @@ namespace MaktabaDesktop
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.panel6);
             this.panel5.Controls.Add(this.OrdersTable);
+            this.panel5.Controls.Add(this.panel7);
+            this.panel5.Controls.Add(this.panel6);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel5.Location = new System.Drawing.Point(0, 414);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1358, 335);
             this.panel5.TabIndex = 5;
+            // 
+            // OrdersTable
+            // 
+            this.OrdersTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.OrdersTable.Dock = System.Windows.Forms.DockStyle.Top;
+            this.OrdersTable.Location = new System.Drawing.Point(0, 24);
+            this.OrdersTable.Name = "OrdersTable";
+            this.OrdersTable.RowTemplate.Height = 25;
+            this.OrdersTable.Size = new System.Drawing.Size(1358, 162);
+            this.OrdersTable.TabIndex = 8;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.RefreashBookItemBtn);
+            this.panel7.Controls.Add(this.label24);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(1358, 24);
+            this.panel7.TabIndex = 7;
+            // 
+            // RefreashBookItemBtn
+            // 
+            this.RefreashBookItemBtn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.RefreashBookItemBtn.Location = new System.Drawing.Point(1131, 0);
+            this.RefreashBookItemBtn.Name = "RefreashBookItemBtn";
+            this.RefreashBookItemBtn.Size = new System.Drawing.Size(227, 24);
+            this.RefreashBookItemBtn.TabIndex = 1;
+            this.RefreashBookItemBtn.Text = "Refreash";
+            this.RefreashBookItemBtn.UseVisualStyleBackColor = true;
+            this.RefreashBookItemBtn.Click += new System.EventHandler(this.RefreashBookItemBtn_Click);
+            // 
+            // label24
+            // 
+            this.label24.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label24.Location = new System.Drawing.Point(0, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(219, 24);
+            this.label24.TabIndex = 0;
+            this.label24.Text = "Orders Table:";
             // 
             // panel6
             // 
@@ -441,10 +500,10 @@ namespace MaktabaDesktop
             this.panel6.Controls.Add(this.OrderIDText);
             this.panel6.Controls.Add(this.label13);
             this.panel6.Controls.Add(this.panel8);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Location = new System.Drawing.Point(0, 177);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel6.Location = new System.Drawing.Point(0, 192);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1358, 217);
+            this.panel6.Size = new System.Drawing.Size(1358, 143);
             this.panel6.TabIndex = 1;
             // 
             // bookListforOrder
@@ -633,7 +692,7 @@ namespace MaktabaDesktop
             this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel8.Location = new System.Drawing.Point(1039, 0);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(319, 217);
+            this.panel8.Size = new System.Drawing.Size(319, 143);
             this.panel8.TabIndex = 1;
             // 
             // textBox1
@@ -713,20 +772,6 @@ namespace MaktabaDesktop
             this.label12.TabIndex = 38;
             this.label12.Text = "Value:";
             // 
-            // OrdersTable
-            // 
-            this.OrdersTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.OrdersTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.OrdersTable.Dock = System.Windows.Forms.DockStyle.Top;
-            this.OrdersTable.Location = new System.Drawing.Point(0, 0);
-            this.OrdersTable.MultiSelect = false;
-            this.OrdersTable.Name = "OrdersTable";
-            this.OrdersTable.ReadOnly = true;
-            this.OrdersTable.RowTemplate.Height = 25;
-            this.OrdersTable.Size = new System.Drawing.Size(1358, 177);
-            this.OrdersTable.TabIndex = 0;
-            this.OrdersTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OrdersTable_CellClick);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -734,35 +779,32 @@ namespace MaktabaDesktop
             this.ClientSize = new System.Drawing.Size(1358, 749);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BooksItemsTable)).EndInit();
             this.panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.OrdersTable)).EndInit();
+            this.panel7.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.OrdersTable)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button DeleteBookItemBtn;
         private System.Windows.Forms.Button EditBookItemBtn;
         private System.Windows.Forms.Button AddItemBtn;
         private System.Windows.Forms.DateTimePicker AddingDateFeild;
@@ -812,7 +854,6 @@ namespace MaktabaDesktop
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.DataGridView OrdersTable;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox countryText;
         private System.Windows.Forms.Label label19;
@@ -821,5 +862,12 @@ namespace MaktabaDesktop
         private System.Windows.Forms.TextBox customerNameText;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.ListBox bookListforOrder;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button refreashBtn;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.DataGridView OrdersTable;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Button RefreashBookItemBtn;
+        private System.Windows.Forms.Label label24;
     }
 }
