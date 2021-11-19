@@ -15,6 +15,10 @@ namespace MaktabaDesktop
     {
         BookList bookList;
         Book book;
+        BookItem bookItem;
+        BookItemList bookItemList;
+        CatagoryList catagoryList;
+        Catagory catagory;
         string ISPAN;
         public BookInformationForm()
         {
@@ -24,6 +28,12 @@ namespace MaktabaDesktop
         private void BookInformationForm_Load(object sender, EventArgs e)
         {
             bookList = new BookList();
+
+            //creating the catagory list
+            catagoryList = new CatagoryList();
+            catagoryList.Populate();
+            catagorycombo.DataSource = catagoryList.List;
+
             loadDataToTable();
         } //to load data and refresh table after editing it
         public void loadDataToTable()
@@ -48,7 +58,19 @@ namespace MaktabaDesktop
             ISNAPtext.Text = book.ISBAN;
             autherText.Text = book.Book_Auther;
             bookTitleText.Text = book.Book_Title;
-            DORtext.Text = book.Date_Of_Release;
+            dateTimePicker1.Value = Convert.ToDateTime(book.Date_Of_Release);
+            catagory = new Catagory();
+            int index = 0;
+            foreach (Catagory catagory1 in catagoryList.List)
+            {
+                if (catagory1.category_id == book.category_id)
+                {
+                    catagorycombo.SelectedIndex = index;
+                    break;
+                }
+                else
+                    index++;
+            }
             
         }
         public void loadDataToObject()
@@ -56,8 +78,10 @@ namespace MaktabaDesktop
             book.ISBAN = ISNAPtext.Text;
             book.Book_Title = bookTitleText.Text;
             book.Book_Auther = autherText.Text;
-            book.Date_Of_Release = DORtext.Text;
-            book.category_id = textBox1.Text;
+            book.Date_Of_Release = dateTimePicker1.Value.ToString("yyyy/MM/dd");
+            catagory = (Catagory)catagorycombo.SelectedItem;
+            book.category_id = catagory.category_id;
+            MessageBox.Show("..." + book.category_id);
         }
 
         private void addBtn_Click(object sender, EventArgs e)
@@ -87,28 +111,61 @@ namespace MaktabaDesktop
 
         private void editBtn_Click(object sender, EventArgs e)
         {
-            if (book != null)
+            if (!string.IsNullOrWhiteSpace(ISNAPtext.Text) || !string.IsNullOrWhiteSpace(autherText.Text) || !string.IsNullOrWhiteSpace(bookTitleText.Text))
             {
-                loadDataToObject();
-                try
+                if (book != null)
                 {
-                    bookList.Update(book);
-                }catch(Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
+                    loadDataToObject();
+                    try
+                    {
+                        bookList.Update(book);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    if (book.getErroMessage() != null)
+                        MessageBox.Show("ERROR: " + book.getErroMessage());
+                    else
+                        loadDataToTable();
                 }
-                if (book.getErroMessage() != null)
-                    MessageBox.Show("ERROR: " + book.getErroMessage());
                 else
-                    loadDataToTable(); 
+                    MessageBox.Show("You need to Select a Reocrd First");
             }
-            else
-                MessageBox.Show("You need to Select a Reocrd First");
+            
         }
 
         private void deleteBtn_Click(object sender, EventArgs e)
         {
-     //       bookList.CheckChildRecord("category_id", )
+            bookItemList = new BookItemList();
+
+            if (book != null)
+            {
+                if (bookItemList.CheckChildRecord("ISBAN", book.ISBAN))
+                {
+                    MessageBox.Show("THis Book is Related to A book item. you shoud Delete the Book items Related to this Book");
+                }
+                else
+                {
+                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to Delete This record?", "Confirm Deleting ", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                        bookList.Delete(book);
+
+                }
+            }
+            else
+                MessageBox.Show("You Need to Select a Record First");
+                
+        }
+
+        private void clearBtn_Click(object sender, EventArgs e)
+        {
+            book = null;
+            ISNAPtext.Text = null;
+            autherText.Text = null;
+            bookTitleText.Text = null;
+            dateTimePicker1.Value = DateTime.Today;
+            catagorycombo.SelectedIndex = 0;
         }
     }
 }

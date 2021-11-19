@@ -145,30 +145,30 @@ namespace MaktabaDesktop
                         frm.Close();
                     }
                     else{
-                       textBox3.Text= bookItem.getErroMessage();
+                       
                         MessageBox.Show("ERRRO: " + bookItem.getErroMessage());
                     }
                     
                 }
                 else
                 {
-
+                    bookItemList = new BookItemList();
+                    settingValuesForUpdateBtn();
+                    bookItemList.Update(bookItem);
+                    if (bookItem.getVaild())
+                    {
+                        MessageBox.Show("Adding is Sucssfull");
+                        ManageBookItems frm = new ManageBookItems();
+                        frm.Close();
+                    }
+                    else
+                    {
+                        textBox3.Text = bookItem.getErroMessage();
+                        MessageBox.Show("ERRRO: " + bookItem.getErroMessage());
+                    }
+                    bookItem = null;
                 }
-                bookItemList = new BookItemList();
-                settingValuesForUpdateBtn();
-                bookItemList.Update(bookItem);
-                if (bookItem.getVaild())
-                {
-                    MessageBox.Show("Adding is Sucssfull");
-                    ManageBookItems frm = new ManageBookItems();
-                    frm.Close();
-                }
-                else
-                {
-                    textBox3.Text = bookItem.getErroMessage();
-                    MessageBox.Show("ERRRO: " + bookItem.getErroMessage());
-                }
-                bookItem = null;
+               
             }
             else
                 MessageBox.Show("You Need to Select a Book First");

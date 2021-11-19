@@ -40,8 +40,9 @@ namespace MaktabaDesktop
                     Global.admin = admin1;
                     MainForm frm = new MainForm();
                     Login loginfrm = new Login();
+                    loginfrm.Hide();
                     frm.Show();
-                    loginfrm.Close();
+                    
 
                 }
 

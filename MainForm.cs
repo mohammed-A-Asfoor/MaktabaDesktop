@@ -24,7 +24,7 @@ namespace MaktabaDesktop
         CustomerList customerList;
         customer customer;
         Book_ListList Book_ListList;
-        Book_List book_Listl;
+        Book_List book_List;
         string bookItemID;
         string orderID;
         public MainForm()
@@ -39,6 +39,8 @@ namespace MaktabaDesktop
 
             loadBookitemTable();
             loadOrdersTable();
+
+           
             
         }
         public void loadBookitemTable()
@@ -81,9 +83,9 @@ namespace MaktabaDesktop
 
         private void SearchBtn_Click(object sender, EventArgs e)
         {
-           bookItemList.Filter(FiledText.Text, ValueText.Text);
-           BooksItemsTable.DataSource = bookItemList.DataTable;
-            //isbanText.Text= 
+             bookItemList.Filter(FiledText.Text, ValueText.Text);
+            BooksItemsTable.DataSource = bookItemList.DataTable;
+           // isbanText.Text = bookItemList.PopulateTest(bookItem);
         }
 
         private void label15_Click(object sender, EventArgs e)
@@ -140,7 +142,7 @@ namespace MaktabaDesktop
             customerList = new CustomerList();
             customerList.Populate(customer);
 
-            customerNameText.Text = customer.CustomerFname + " " + customer.CustomerLname;
+            customerNameText.Text = customer.Customer_fname + " " + customer.customer_lname;
             loadBookList();
            
 
@@ -234,10 +236,68 @@ namespace MaktabaDesktop
                 DialogResult dialogResult = MessageBox.Show("Are you sure you want to Delete This record?", "Confirm Deleting ", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
+                  //  textBox1.Text = bookItemList.PopulateTest("Book_Itme_id", bookItem.Book_Itme_id);
+                    Book_ListList = new Book_ListList();
+                    if(Book_ListList.CheckChildRecord("Book_Itme_id", bookItem.Book_Itme_id))
+                    {
+                        MessageBox.Show("this book item is used in an Order");
+                    }else
                     bookItemList.Delete(bookItem);
+                    
                     loadBookitemTable();
                 } 
             }
+        }
+
+        private void AddNewOrder_Click(object sender, EventArgs e)
+        {
+            Global.Order = null;
+            Manage_Orders frm = new Manage_Orders();
+            frm.Show();
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PublisherText_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void QuantityText_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void booksBtn_Click(object sender, EventArgs e)
+        {
+            BookInformationForm frm = new BookInformationForm();
+            frm.Show();
+        }
+
+        private void catagoriesBtn_Click(object sender, EventArgs e)
+        {
+            ManageCatagories frm = new ManageCatagories();
+            frm.Show();
+        }
+
+        private void AdminsBtn_Click(object sender, EventArgs e)
+        {
+            Manage_Admins frm = new Manage_Admins();
+            frm.Show();
         }
     }
 }

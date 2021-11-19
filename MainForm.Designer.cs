@@ -91,12 +91,23 @@ namespace MaktabaDesktop
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.AddNewOrder = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.AdminsBtn = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.catagoriesBtn = new System.Windows.Forms.Button();
+            this.booksBtn = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -107,6 +118,9 @@ namespace MaktabaDesktop
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel8.SuspendLayout();
+            this.panel9.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -173,6 +187,7 @@ namespace MaktabaDesktop
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1358, 318);
             this.panel3.TabIndex = 2;
+            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // titleText
             // 
@@ -323,7 +338,7 @@ namespace MaktabaDesktop
             this.BooksItemsTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.BooksItemsTable.Size = new System.Drawing.Size(1358, 197);
             this.BooksItemsTable.TabIndex = 2;
-            this.BooksItemsTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OrdersTable_CellClick);
+            this.BooksItemsTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BooksItemsTable_CellClick);
             // 
             // AddingDateFeild
             // 
@@ -373,6 +388,7 @@ namespace MaktabaDesktop
             this.PublisherText.ReadOnly = true;
             this.PublisherText.Size = new System.Drawing.Size(100, 23);
             this.PublisherText.TabIndex = 7;
+            this.PublisherText.TextChanged += new System.EventHandler(this.PublisherText_TextChanged);
             // 
             // label4
             // 
@@ -382,6 +398,7 @@ namespace MaktabaDesktop
             this.label4.Size = new System.Drawing.Size(59, 15);
             this.label4.TabIndex = 6;
             this.label4.Text = "Publisher:";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label3
             // 
@@ -416,6 +433,7 @@ namespace MaktabaDesktop
             this.QuantityText.ReadOnly = true;
             this.QuantityText.Size = new System.Drawing.Size(100, 23);
             this.QuantityText.TabIndex = 1;
+            this.QuantityText.TextChanged += new System.EventHandler(this.QuantityText_TextChanged);
             // 
             // label1
             // 
@@ -425,6 +443,7 @@ namespace MaktabaDesktop
             this.label1.Size = new System.Drawing.Size(56, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "Quantity:";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // panel5
             // 
@@ -446,6 +465,7 @@ namespace MaktabaDesktop
             this.OrdersTable.RowTemplate.Height = 25;
             this.OrdersTable.Size = new System.Drawing.Size(1358, 162);
             this.OrdersTable.TabIndex = 8;
+            this.OrdersTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OrdersTable_CellClick);
             // 
             // panel7
             // 
@@ -683,7 +703,7 @@ namespace MaktabaDesktop
             this.panel8.Controls.Add(this.textBox1);
             this.panel8.Controls.Add(this.button3);
             this.panel8.Controls.Add(this.button6);
-            this.panel8.Controls.Add(this.button7);
+            this.panel8.Controls.Add(this.AddNewOrder);
             this.panel8.Controls.Add(this.label11);
             this.panel8.Controls.Add(this.textBox2);
             this.panel8.Controls.Add(this.button8);
@@ -720,14 +740,15 @@ namespace MaktabaDesktop
             this.button6.Text = "Edit";
             this.button6.UseVisualStyleBackColor = true;
             // 
-            // button7
+            // AddNewOrder
             // 
-            this.button7.Location = new System.Drawing.Point(241, 17);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 31;
-            this.button7.Text = "Add New";
-            this.button7.UseVisualStyleBackColor = true;
+            this.AddNewOrder.Location = new System.Drawing.Point(241, 17);
+            this.AddNewOrder.Name = "AddNewOrder";
+            this.AddNewOrder.Size = new System.Drawing.Size(75, 23);
+            this.AddNewOrder.TabIndex = 31;
+            this.AddNewOrder.Text = "Add New";
+            this.AddNewOrder.UseVisualStyleBackColor = true;
+            this.AddNewOrder.Click += new System.EventHandler(this.AddNewOrder_Click);
             // 
             // label11
             // 
@@ -772,11 +793,127 @@ namespace MaktabaDesktop
             this.label12.TabIndex = 38;
             this.label12.Text = "Value:";
             // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.tabControl1);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel9.Location = new System.Drawing.Point(0, 0);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(1358, 54);
+            this.panel9.TabIndex = 6;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1358, 54);
+            this.tabControl1.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1350, 26);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "File";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.AdminsBtn);
+            this.tabPage2.Controls.Add(this.button5);
+            this.tabPage2.Controls.Add(this.button4);
+            this.tabPage2.Controls.Add(this.catagoriesBtn);
+            this.tabPage2.Controls.Add(this.booksBtn);
+            this.tabPage2.Location = new System.Drawing.Point(4, 24);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1350, 26);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Manage";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // AdminsBtn
+            // 
+            this.AdminsBtn.Location = new System.Drawing.Point(473, 0);
+            this.AdminsBtn.Name = "AdminsBtn";
+            this.AdminsBtn.Size = new System.Drawing.Size(75, 23);
+            this.AdminsBtn.TabIndex = 4;
+            this.AdminsBtn.Text = "Admins";
+            this.AdminsBtn.UseVisualStyleBackColor = true;
+            this.AdminsBtn.Click += new System.EventHandler(this.AdminsBtn_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(342, 0);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(102, 23);
+            this.button5.TabIndex = 3;
+            this.button5.Text = "Discount Codes";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(106, 0);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 2;
+            this.button4.Text = "Customers";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // catagoriesBtn
+            // 
+            this.catagoriesBtn.Location = new System.Drawing.Point(220, 0);
+            this.catagoriesBtn.Name = "catagoriesBtn";
+            this.catagoriesBtn.Size = new System.Drawing.Size(75, 23);
+            this.catagoriesBtn.TabIndex = 1;
+            this.catagoriesBtn.Text = "Catagories";
+            this.catagoriesBtn.UseVisualStyleBackColor = true;
+            this.catagoriesBtn.Click += new System.EventHandler(this.catagoriesBtn_Click);
+            // 
+            // booksBtn
+            // 
+            this.booksBtn.Location = new System.Drawing.Point(1, 0);
+            this.booksBtn.Name = "booksBtn";
+            this.booksBtn.Size = new System.Drawing.Size(75, 23);
+            this.booksBtn.TabIndex = 0;
+            this.booksBtn.Text = "Books";
+            this.booksBtn.UseVisualStyleBackColor = true;
+            this.booksBtn.Click += new System.EventHandler(this.booksBtn_Click);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 24);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1350, 26);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Reveue";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Location = new System.Drawing.Point(4, 24);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(1350, 26);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Reports";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1358, 749);
+            this.Controls.Add(this.panel9);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel2);
             this.Name = "MainForm";
@@ -796,6 +933,9 @@ namespace MaktabaDesktop
             this.panel6.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -848,7 +988,7 @@ namespace MaktabaDesktop
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button AddNewOrder;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button8;
@@ -869,5 +1009,16 @@ namespace MaktabaDesktop
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Button RefreashBookItemBtn;
         private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button catagoriesBtn;
+        private System.Windows.Forms.Button booksBtn;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button AdminsBtn;
     }
 }
