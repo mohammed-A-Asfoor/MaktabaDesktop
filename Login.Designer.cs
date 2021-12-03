@@ -41,6 +41,7 @@ namespace MaktabaDesktop
             // 
             this.userNameText.Location = new System.Drawing.Point(120, 17);
             this.userNameText.Name = "userNameText";
+            this.userNameText.PlaceholderText = "Enter Your Name";
             this.userNameText.Size = new System.Drawing.Size(100, 23);
             this.userNameText.TabIndex = 0;
             // 
@@ -66,6 +67,7 @@ namespace MaktabaDesktop
             // 
             this.passwordText.Location = new System.Drawing.Point(120, 58);
             this.passwordText.Name = "passwordText";
+            this.passwordText.PasswordChar = '*';
             this.passwordText.Size = new System.Drawing.Size(100, 23);
             this.passwordText.TabIndex = 2;
             // 

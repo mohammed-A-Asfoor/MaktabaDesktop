@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Maktaba_Class_Library;
+using iTextSharp;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
 
 namespace MaktabaDesktop
 {
@@ -35,8 +39,14 @@ namespace MaktabaDesktop
         private void MainForm_Load(object sender, EventArgs e)
         {
             bookItemList = new BookItemList();
+            bookItem = new BookItem();
+            bookItemList.getColumnName(bookItem);
+            bookitemcolumnNames.DataSource= bookItemList.ColumnNames;
             orderList = new OrderList();
-
+            order = new Order();
+            orderList.getColumnName(order);
+            OrderColumnNames.DataSource = orderList.ColumnNames;
+            order = null;
             loadBookitemTable();
             loadOrdersTable();
 
@@ -66,10 +76,11 @@ namespace MaktabaDesktop
         {
             QuantityText.Text = bookItem.Quantity;
             ConditionText.Text = bookItem.Condition;
-            PublisherText.Text = bookItem.Publisher;
+          
             BookPriceText.Text = bookItem.Book_price;
             isbanText.Text = bookItem.ISBAN;
             AddingDateFeild.Value = Convert.ToDateTime(bookItem.Adding_date);
+            pictureBox1.ImageLocation = bookItem.Image;
 
             book = new Book(bookItem.ISBAN);
             bookList = new BookList();
@@ -79,13 +90,51 @@ namespace MaktabaDesktop
 
             titleText.Text = book.Book_Title;
             autherText.Text = book.Book_Auther;
+            PublisherText.Text = book.Publisher;
         }
 
         private void SearchBtn_Click(object sender, EventArgs e)
         {
-             bookItemList.Filter(FiledText.Text, ValueText.Text);
-            BooksItemsTable.DataSource = bookItemList.DataTable;
-           // isbanText.Text = bookItemList.PopulateTest(bookItem);
+            //check if Value TextBox is Not Empty
+            if (!string.IsNullOrWhiteSpace(ValueText.Text))
+            {
+                if (bookitemcolumnNames.SelectedIndex == 0 || bookitemcolumnNames.SelectedIndex == 1|| bookitemcolumnNames.SelectedIndex == 7)
+                {
+                    int num;
+                    bool isInt = int.TryParse(ValueText.Text, out num);
+                    if (isInt)
+                        bookItemList.Filter(bookitemcolumnNames.SelectedItem.ToString(), ValueText.Text);
+                    else
+                        MessageBox.Show("Wrong DataType, you must enter a number");
+                }else if (bookitemcolumnNames.SelectedIndex == 4)
+                {
+                    DateTime date;
+                    bool isDate = DateTime.TryParse(ValueText.Text, out date);
+
+                    if (isDate)
+                    {
+                        bookItemList.Filter(bookitemcolumnNames.SelectedItem.ToString(), ValueText.Text);
+
+                    }
+                    else
+                        MessageBox.Show("You Must Enter a Valild Date");
+                } else if(bookitemcolumnNames.SelectedIndex == 5){
+                    Double amount;
+                    bool isDouble = double.TryParse(ValueText.Text, out amount);
+
+                    if (isDouble)
+                    {
+                        bookItemList.Filter(bookitemcolumnNames.SelectedItem.ToString(), ValueText.Text);
+
+                    }
+                    else
+                        MessageBox.Show("Value must be a Number");
+                }
+              
+               
+            }
+            else
+                MessageBox.Show("Empty Feild");
         }
 
         private void label15_Click(object sender, EventArgs e)
@@ -298,6 +347,209 @@ namespace MaktabaDesktop
         {
             Manage_Admins frm = new Manage_Admins();
             frm.Show();
+        }
+
+        private void ManageCustomersBtn_Click(object sender, EventArgs e)
+        {
+            ManageCustomers frm = new ManageCustomers();
+            frm.Show();
+        }
+
+        private void ManagediscountCodesBtn_Click(object sender, EventArgs e)
+        {
+            Managediscountcode frm = new Managediscountcode();
+            frm.Show();
+        }
+
+        private void DeleteOrderBtn_Click(object sender, EventArgs e)
+        {
+            if (order != null)
+            {
+                Book_ListList = new Book_ListList();
+                
+                //checking if the customer is linked to an order or a list
+                
+                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to Delete Order? ", "Deleting Order ", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+
+                        try
+                        {
+                        if (Book_ListList.CheckChildRecord("Order_id", order.Order_id))
+                        {
+                            Book_ListList.Delete(order);
+                        }
+                        orderList.Delete(order);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error: " + ex);
+                        }
+                        if (!customer.getVaild())
+                        {
+                            MessageBox.Show("Error: " + customer.getErroMessage());
+                        }
+                        else
+                        {
+                             MessageBox.Show("Customer Deleted");
+                             loadOrdersTable();
+                        }
+
+                     }
+                
+      
+
+                
+            }
+            else
+                MessageBox.Show("you should Select an Order First");
+        }
+
+        private void EditOrderBtn_Click(object sender, EventArgs e)
+        {
+            if (order != null)
+            {
+                Manage_Orders frm = new Manage_Orders();
+                Global.Order = order;
+                frm.Show();
+            }
+            else
+                MessageBox.Show("You Need to Select An order First");
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void searchOrderBtn_Click(object sender, EventArgs e)
+        {
+           
+            if (OrderColumnNames.SelectedIndex == 0 || OrderColumnNames.SelectedIndex == 3 || OrderColumnNames.SelectedIndex == 4)
+            {
+              
+                int id;
+                bool isInt = int.TryParse(orderSearchValueText.Text, out id);
+
+                if (isInt)
+                {
+                    orderList.Filter(OrderColumnNames.SelectedItem.ToString(), orderSearchValueText.Text);
+
+                }
+                else
+                    MessageBox.Show("You Must Enter an Number");
+            }
+            else if (OrderColumnNames.SelectedIndex == 1)
+            {
+                DateTime date;
+                bool isDate = DateTime.TryParse(orderSearchValueText.Text, out date);
+
+                if (isDate)
+                {
+                    orderList.Filter(OrderColumnNames.SelectedItem.ToString(), orderSearchValueText.Text);
+
+                }
+                else
+                    MessageBox.Show("You Must Enter a Valild Date");
+            }
+            else if (OrderColumnNames.SelectedIndex == 2)
+            {
+                Double amount;
+                bool isDouble = double.TryParse(orderSearchValueText.Text, out amount);
+
+                if (isDouble)
+                {
+                    orderList.Filter(OrderColumnNames.SelectedItem.ToString(), orderSearchValueText.Text);
+
+                }
+                else
+                    MessageBox.Show("Value must be a number");
+            }
+        }
+
+        private void clearOrderSearch_Click(object sender, EventArgs e)
+        {
+            orderList.Populate();
+            loadOrdersTable();
+        }
+
+        private void StatusBtn_Click(object sender, EventArgs e)
+        {
+            Status frm = new Status();
+            frm.Show();
+        }
+
+        private void createPDFBtn_Click(object sender, EventArgs e)
+        {
+
+
+            if (order != null)
+            {
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+                saveFileDialog1.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
+                saveFileDialog1.FilterIndex = 2;
+                saveFileDialog1.RestoreDirectory = true;
+
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    string filepath = Path.GetDirectoryName(saveFileDialog1.FileName);
+                    MessageBox.Show(filepath);
+
+                    Document document = new Document(PageSize.A5, 20f, 20f, 30f, 30f);
+                    PdfWriter pdfWriter = PdfWriter.GetInstance(document, new FileStream(saveFileDialog1.FileName, FileMode.Create));
+                    document.Open();
+
+                    Paragraph header = new Paragraph("MaktabaOnline");
+                    header.SpacingAfter = 30f;
+                    Paragraph orderData = new Paragraph("Order Number: "+order.Order_id+" /// Date:"+order.Order_date);
+                    header.SpacingAfter = 10f;
+                    Paragraph customerData = new Paragraph("Customer Name: " + customer.Customer_fname + " " + customer.customer_lname + "////Customer Phone: " + customer.Customer_Phone);
+                    customerData.SpacingAfter = 10f;
+                    Paragraph customerAddress = new Paragraph("Address: House:" + addresses.House + " /// Road:" + addresses.Street + " // Block:" + addresses.Block);
+                    Paragraph customerAddress1 = new Paragraph("City:" + addresses.City + " /// Country:" + addresses.Country);
+                    customerAddress1.SpacingAfter = 20f;
+
+                    PdfPTable pdfPTable = new PdfPTable(4);
+                    BookItem justofrNames = new BookItem();
+                    pdfPTable.AddCell("bookItem ID");
+                    pdfPTable.AddCell("ISPAN");
+                    pdfPTable.AddCell("Price");
+                    pdfPTable.AddCell("Quantity");
+                    foreach (Book_List list in Book_ListList.List)
+                    {
+                        BookItem abookItem = new BookItem(list.Book_Itme_id);
+                        bookItemList.Populate(abookItem);
+                        pdfPTable.AddCell(abookItem.Book_Itme_id);
+                        pdfPTable.AddCell(abookItem.ISBAN);
+                        pdfPTable.AddCell(abookItem.Book_price);
+                        pdfPTable.AddCell(abookItem.Quantity);
+                    }
+                    pdfPTable.SpacingAfter = 20f;
+
+                     Paragraph price = new Paragraph("Total Prcie: "+order.Total_price);
+                    price.SpacingAfter = 50f;
+                    Paragraph note = new Paragraph("Note: disocunt amount is not inclouded");
+
+
+
+
+                    document.Add(header);
+                    document.Add(orderData);
+                    document.Add(customerData);
+                    document.Add(customerAddress);
+                    document.Add(customerAddress1);
+                    document.Add(pdfPTable);
+                    document.Add(price);
+                    document.Add(note);
+
+                    document.Close();
+                }
+            }
+            else
+                MessageBox.Show("you Must Select a Row first");
+            
+
         }
     }
 }
