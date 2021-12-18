@@ -58,6 +58,7 @@ namespace MaktabaDesktop
             ISNAPtext.Text = book.ISBAN;
             autherText.Text = book.Book_Auther;
             bookTitleText.Text = book.Book_Title;
+            publisherText.Text = book.Publisher;
             dateTimePicker1.Value = Convert.ToDateTime(book.Date_Of_Release);
             catagory = new Catagory();
             int index = 0;
@@ -79,6 +80,7 @@ namespace MaktabaDesktop
             book.Book_Title = bookTitleText.Text;
             book.Book_Auther = autherText.Text;
             book.Date_Of_Release = dateTimePicker1.Value.ToString("yyyy/MM/dd");
+            book.Publisher = publisherText.Text;
             catagory = (Catagory)catagorycombo.SelectedItem;
             book.category_id = catagory.category_id;
             MessageBox.Show("..." + book.category_id);
@@ -91,27 +93,38 @@ namespace MaktabaDesktop
                 MessageBox.Show("Click Clear and try agian");
             }else
             {
-                book = new Book();
-                loadDataToObject();
-                //book.Catagoryid = car
-                try
+                if (!string.IsNullOrEmpty(autherText.Text) && !string.IsNullOrEmpty(bookTitleText.Text) && !string.IsNullOrEmpty(publisherText.Text) && !string.IsNullOrEmpty(ISNAPtext.Text))
+
                 {
-                    bookList.Add(book);
-                } catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                 }
-                if(book.getErroMessage()!=null)
-                    MessageBox.Show(book.getErroMessage());
+                    book = new Book();
+                    loadDataToObject();
+                    //book.Catagoryid = car
+                    try
+                    {
+                        bookList.Add(book);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    if (book.getErroMessage() != null)
+                        MessageBox.Show(book.getErroMessage());
+                    else
+                    {
+                        loadDataToTable();
+                        MessageBox.Show("Record Saved");
+                    }
+                        
+                }
                 else
-                    loadDataToTable();
+                    MessageBox.Show("Empty TextBox");
 
             }
         }
 
         private void editBtn_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(ISNAPtext.Text) || !string.IsNullOrWhiteSpace(autherText.Text) || !string.IsNullOrWhiteSpace(bookTitleText.Text))
+            if (!string.IsNullOrWhiteSpace(ISNAPtext.Text) && !string.IsNullOrWhiteSpace(autherText.Text) && !string.IsNullOrWhiteSpace(bookTitleText.Text))
             {
                 if (book != null)
                 {
@@ -127,7 +140,11 @@ namespace MaktabaDesktop
                     if (book.getErroMessage() != null)
                         MessageBox.Show("ERROR: " + book.getErroMessage());
                     else
+                    {
                         loadDataToTable();
+                        MessageBox.Show("Record Saved");
+                    }
+                        
                 }
                 else
                     MessageBox.Show("You need to Select a Reocrd First");

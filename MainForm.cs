@@ -31,6 +31,7 @@ namespace MaktabaDesktop
         Book_List book_List;
         string bookItemID;
         string orderID;
+        BookItem testItem;
         public MainForm()
         {
             InitializeComponent();
@@ -39,8 +40,8 @@ namespace MaktabaDesktop
         private void MainForm_Load(object sender, EventArgs e)
         {
             bookItemList = new BookItemList();
-            bookItem = new BookItem();
-            bookItemList.getColumnName(bookItem);
+            testItem = new BookItem();
+            bookItemList.getColumnName(testItem);
             bookitemcolumnNames.DataSource= bookItemList.ColumnNames;
             orderList = new OrderList();
             order = new Order();
@@ -60,8 +61,9 @@ namespace MaktabaDesktop
         }
         public void loadOrdersTable()
         {
-            OrdersTable.DataSource = orderList.DataTable;
             orderList.Populate();
+            OrdersTable.DataSource = orderList.DataTable;
+            
         }
 
 

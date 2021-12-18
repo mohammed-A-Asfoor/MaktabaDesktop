@@ -16,5 +16,10 @@ namespace MaktabaDesktop
         {
             InitializeComponent();
         }
+
+        private void Revenu_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -49,6 +49,8 @@ namespace MaktabaDesktop
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.publisherText = new System.Windows.Forms.TextBox();
+            this.Lable1234 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.BookInformationTable)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -197,6 +199,8 @@ namespace MaktabaDesktop
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.publisherText);
+            this.panel4.Controls.Add(this.Lable1234);
             this.panel4.Controls.Add(this.catagorycombo);
             this.panel4.Controls.Add(this.dateTimePicker1);
             this.panel4.Controls.Add(this.ISNAPtext);
@@ -250,6 +254,22 @@ namespace MaktabaDesktop
             this.panel5.Size = new System.Drawing.Size(800, 239);
             this.panel5.TabIndex = 17;
             // 
+            // publisherText
+            // 
+            this.publisherText.Location = new System.Drawing.Point(341, 105);
+            this.publisherText.Name = "publisherText";
+            this.publisherText.Size = new System.Drawing.Size(136, 23);
+            this.publisherText.TabIndex = 18;
+            // 
+            // Lable1234
+            // 
+            this.Lable1234.AutoSize = true;
+            this.Lable1234.Location = new System.Drawing.Point(218, 105);
+            this.Lable1234.Name = "Lable1234";
+            this.Lable1234.Size = new System.Drawing.Size(56, 15);
+            this.Lable1234.TabIndex = 17;
+            this.Lable1234.Text = "Publisher";
+            // 
             // BookInformationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -293,5 +313,7 @@ namespace MaktabaDesktop
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.ComboBox catagorycombo;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.TextBox publisherText;
+        private System.Windows.Forms.Label Lable1234;
     }
 }

@@ -68,7 +68,6 @@ namespace MaktabaDesktop
             this.RefreashBookItemBtn = new System.Windows.Forms.Button();
             this.label24 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.bookListforOrder = new System.Windows.Forms.ListBox();
             this.customerNameText = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
@@ -199,7 +198,7 @@ namespace MaktabaDesktop
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(832, 215);
+            this.pictureBox1.Location = new System.Drawing.Point(835, 197);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(128, 82);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -208,7 +207,7 @@ namespace MaktabaDesktop
             // 
             // titleText
             // 
-            this.titleText.Location = new System.Drawing.Point(428, 224);
+            this.titleText.Location = new System.Drawing.Point(428, 203);
             this.titleText.Name = "titleText";
             this.titleText.ReadOnly = true;
             this.titleText.Size = new System.Drawing.Size(100, 23);
@@ -216,7 +215,7 @@ namespace MaktabaDesktop
             // 
             // autherText
             // 
-            this.autherText.Location = new System.Drawing.Point(428, 274);
+            this.autherText.Location = new System.Drawing.Point(428, 243);
             this.autherText.Name = "autherText";
             this.autherText.ReadOnly = true;
             this.autherText.Size = new System.Drawing.Size(100, 23);
@@ -225,7 +224,7 @@ namespace MaktabaDesktop
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(545, 277);
+            this.label9.Location = new System.Drawing.Point(545, 246);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(76, 15);
             this.label9.TabIndex = 16;
@@ -234,7 +233,7 @@ namespace MaktabaDesktop
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(346, 277);
+            this.label10.Location = new System.Drawing.Point(346, 246);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(76, 15);
             this.label10.TabIndex = 14;
@@ -252,30 +251,30 @@ namespace MaktabaDesktop
             this.panel4.Controls.Add(this.ClearTableBtn);
             this.panel4.Controls.Add(this.label8);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(1007, 197);
+            this.panel4.Location = new System.Drawing.Point(988, 191);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(351, 121);
+            this.panel4.Size = new System.Drawing.Size(370, 127);
             this.panel4.TabIndex = 13;
             // 
             // bookitemcolumnNames
             // 
             this.bookitemcolumnNames.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.bookitemcolumnNames.FormattingEnabled = true;
-            this.bookitemcolumnNames.Location = new System.Drawing.Point(53, 20);
+            this.bookitemcolumnNames.Location = new System.Drawing.Point(51, 6);
             this.bookitemcolumnNames.Name = "bookitemcolumnNames";
             this.bookitemcolumnNames.Size = new System.Drawing.Size(146, 23);
             this.bookitemcolumnNames.TabIndex = 41;
             // 
             // ValueText
             // 
-            this.ValueText.Location = new System.Drawing.Point(55, 51);
+            this.ValueText.Location = new System.Drawing.Point(53, 37);
             this.ValueText.Name = "ValueText";
             this.ValueText.Size = new System.Drawing.Size(144, 23);
             this.ValueText.TabIndex = 30;
             // 
             // DeleteBookItemBtn
             // 
-            this.DeleteBookItemBtn.Location = new System.Drawing.Point(266, 78);
+            this.DeleteBookItemBtn.Location = new System.Drawing.Point(264, 64);
             this.DeleteBookItemBtn.Name = "DeleteBookItemBtn";
             this.DeleteBookItemBtn.Size = new System.Drawing.Size(75, 23);
             this.DeleteBookItemBtn.TabIndex = 20;
@@ -285,7 +284,7 @@ namespace MaktabaDesktop
             // 
             // EditBookItemBtn
             // 
-            this.EditBookItemBtn.Location = new System.Drawing.Point(266, 48);
+            this.EditBookItemBtn.Location = new System.Drawing.Point(264, 34);
             this.EditBookItemBtn.Name = "EditBookItemBtn";
             this.EditBookItemBtn.Size = new System.Drawing.Size(75, 23);
             this.EditBookItemBtn.TabIndex = 19;
@@ -295,7 +294,7 @@ namespace MaktabaDesktop
             // 
             // AddItemBtn
             // 
-            this.AddItemBtn.Location = new System.Drawing.Point(266, 20);
+            this.AddItemBtn.Location = new System.Drawing.Point(264, 6);
             this.AddItemBtn.Name = "AddItemBtn";
             this.AddItemBtn.Size = new System.Drawing.Size(75, 23);
             this.AddItemBtn.TabIndex = 17;
@@ -306,7 +305,7 @@ namespace MaktabaDesktop
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(11, 22);
+            this.label7.Location = new System.Drawing.Point(9, 8);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 15);
             this.label7.TabIndex = 25;
@@ -314,7 +313,7 @@ namespace MaktabaDesktop
             // 
             // SearchBookitemBtn
             // 
-            this.SearchBookitemBtn.Location = new System.Drawing.Point(11, 77);
+            this.SearchBookitemBtn.Location = new System.Drawing.Point(9, 63);
             this.SearchBookitemBtn.Name = "SearchBookitemBtn";
             this.SearchBookitemBtn.Size = new System.Drawing.Size(75, 23);
             this.SearchBookitemBtn.TabIndex = 27;
@@ -324,7 +323,7 @@ namespace MaktabaDesktop
             // 
             // ClearTableBtn
             // 
-            this.ClearTableBtn.Location = new System.Drawing.Point(124, 77);
+            this.ClearTableBtn.Location = new System.Drawing.Point(122, 63);
             this.ClearTableBtn.Name = "ClearTableBtn";
             this.ClearTableBtn.Size = new System.Drawing.Size(75, 23);
             this.ClearTableBtn.TabIndex = 28;
@@ -335,7 +334,7 @@ namespace MaktabaDesktop
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(11, 54);
+            this.label8.Location = new System.Drawing.Point(9, 40);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(38, 15);
             this.label8.TabIndex = 29;
@@ -355,20 +354,20 @@ namespace MaktabaDesktop
             this.BooksItemsTable.ReadOnly = true;
             this.BooksItemsTable.RowTemplate.Height = 25;
             this.BooksItemsTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.BooksItemsTable.Size = new System.Drawing.Size(1358, 197);
+            this.BooksItemsTable.Size = new System.Drawing.Size(1358, 191);
             this.BooksItemsTable.TabIndex = 2;
             this.BooksItemsTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BooksItemsTable_CellClick);
             // 
             // AddingDateFeild
             // 
-            this.AddingDateFeild.Location = new System.Drawing.Point(637, 274);
+            this.AddingDateFeild.Location = new System.Drawing.Point(637, 243);
             this.AddingDateFeild.Name = "AddingDateFeild";
             this.AddingDateFeild.Size = new System.Drawing.Size(125, 23);
             this.AddingDateFeild.TabIndex = 12;
             // 
             // isbanText
             // 
-            this.isbanText.Location = new System.Drawing.Point(637, 218);
+            this.isbanText.Location = new System.Drawing.Point(637, 197);
             this.isbanText.Name = "isbanText";
             this.isbanText.ReadOnly = true;
             this.isbanText.Size = new System.Drawing.Size(125, 23);
@@ -377,7 +376,7 @@ namespace MaktabaDesktop
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(545, 226);
+            this.label6.Location = new System.Drawing.Point(545, 205);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(43, 15);
             this.label6.TabIndex = 10;
@@ -385,7 +384,7 @@ namespace MaktabaDesktop
             // 
             // BookPriceText
             // 
-            this.BookPriceText.Location = new System.Drawing.Point(240, 274);
+            this.BookPriceText.Location = new System.Drawing.Point(240, 243);
             this.BookPriceText.Name = "BookPriceText";
             this.BookPriceText.ReadOnly = true;
             this.BookPriceText.Size = new System.Drawing.Size(100, 23);
@@ -394,7 +393,7 @@ namespace MaktabaDesktop
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(176, 277);
+            this.label5.Location = new System.Drawing.Point(176, 246);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(66, 15);
             this.label5.TabIndex = 8;
@@ -402,7 +401,7 @@ namespace MaktabaDesktop
             // 
             // PublisherText
             // 
-            this.PublisherText.Location = new System.Drawing.Point(69, 274);
+            this.PublisherText.Location = new System.Drawing.Point(69, 243);
             this.PublisherText.Name = "PublisherText";
             this.PublisherText.ReadOnly = true;
             this.PublisherText.Size = new System.Drawing.Size(100, 23);
@@ -412,7 +411,7 @@ namespace MaktabaDesktop
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 277);
+            this.label4.Location = new System.Drawing.Point(7, 246);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(59, 15);
             this.label4.TabIndex = 6;
@@ -422,7 +421,7 @@ namespace MaktabaDesktop
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(346, 227);
+            this.label3.Location = new System.Drawing.Point(346, 206);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(62, 15);
             this.label3.TabIndex = 4;
@@ -430,7 +429,7 @@ namespace MaktabaDesktop
             // 
             // ConditionText
             // 
-            this.ConditionText.Location = new System.Drawing.Point(240, 224);
+            this.ConditionText.Location = new System.Drawing.Point(240, 203);
             this.ConditionText.Name = "ConditionText";
             this.ConditionText.ReadOnly = true;
             this.ConditionText.Size = new System.Drawing.Size(100, 23);
@@ -439,7 +438,7 @@ namespace MaktabaDesktop
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(176, 227);
+            this.label2.Location = new System.Drawing.Point(176, 206);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 15);
             this.label2.TabIndex = 2;
@@ -447,7 +446,7 @@ namespace MaktabaDesktop
             // 
             // QuantityText
             // 
-            this.QuantityText.Location = new System.Drawing.Point(69, 223);
+            this.QuantityText.Location = new System.Drawing.Point(69, 202);
             this.QuantityText.Name = "QuantityText";
             this.QuantityText.ReadOnly = true;
             this.QuantityText.Size = new System.Drawing.Size(100, 23);
@@ -457,7 +456,7 @@ namespace MaktabaDesktop
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 227);
+            this.label1.Location = new System.Drawing.Point(7, 206);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 15);
             this.label1.TabIndex = 0;
@@ -481,8 +480,8 @@ namespace MaktabaDesktop
             this.OrdersTable.AllowUserToDeleteRows = false;
             this.OrdersTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.OrdersTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.OrdersTable.Dock = System.Windows.Forms.DockStyle.Top;
-            this.OrdersTable.Location = new System.Drawing.Point(0, 24);
+            this.OrdersTable.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.OrdersTable.Location = new System.Drawing.Point(0, 42);
             this.OrdersTable.Name = "OrdersTable";
             this.OrdersTable.ReadOnly = true;
             this.OrdersTable.RowTemplate.Height = 25;
@@ -498,7 +497,7 @@ namespace MaktabaDesktop
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel7.Location = new System.Drawing.Point(0, 0);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1358, 24);
+            this.panel7.Size = new System.Drawing.Size(1358, 36);
             this.panel7.TabIndex = 7;
             // 
             // RefreashBookItemBtn
@@ -506,7 +505,7 @@ namespace MaktabaDesktop
             this.RefreashBookItemBtn.Dock = System.Windows.Forms.DockStyle.Right;
             this.RefreashBookItemBtn.Location = new System.Drawing.Point(1131, 0);
             this.RefreashBookItemBtn.Name = "RefreashBookItemBtn";
-            this.RefreashBookItemBtn.Size = new System.Drawing.Size(227, 24);
+            this.RefreashBookItemBtn.Size = new System.Drawing.Size(227, 36);
             this.RefreashBookItemBtn.TabIndex = 1;
             this.RefreashBookItemBtn.Text = "Refreash";
             this.RefreashBookItemBtn.UseVisualStyleBackColor = true;
@@ -517,13 +516,12 @@ namespace MaktabaDesktop
             this.label24.Dock = System.Windows.Forms.DockStyle.Left;
             this.label24.Location = new System.Drawing.Point(0, 0);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(219, 24);
+            this.label24.Size = new System.Drawing.Size(219, 36);
             this.label24.TabIndex = 0;
             this.label24.Text = "Orders Table:";
             // 
             // panel6
             // 
-            this.panel6.Controls.Add(this.button1);
             this.panel6.Controls.Add(this.bookListforOrder);
             this.panel6.Controls.Add(this.customerNameText);
             this.panel6.Controls.Add(this.label22);
@@ -546,32 +544,23 @@ namespace MaktabaDesktop
             this.panel6.Controls.Add(this.label13);
             this.panel6.Controls.Add(this.panel8);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(0, 192);
+            this.panel6.Location = new System.Drawing.Point(0, 204);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1358, 143);
+            this.panel6.Size = new System.Drawing.Size(1358, 131);
             this.panel6.TabIndex = 1;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(743, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(290, 23);
-            this.button1.TabIndex = 44;
-            this.button1.Text = "Manage Book List for This Order";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // bookListforOrder
             // 
             this.bookListforOrder.FormattingEnabled = true;
             this.bookListforOrder.ItemHeight = 15;
-            this.bookListforOrder.Location = new System.Drawing.Point(659, 34);
+            this.bookListforOrder.Location = new System.Drawing.Point(659, 11);
             this.bookListforOrder.Name = "bookListforOrder";
             this.bookListforOrder.Size = new System.Drawing.Size(374, 109);
             this.bookListforOrder.TabIndex = 43;
             // 
             // customerNameText
             // 
-            this.customerNameText.Location = new System.Drawing.Point(452, 23);
+            this.customerNameText.Location = new System.Drawing.Point(455, 11);
             this.customerNameText.Name = "customerNameText";
             this.customerNameText.ReadOnly = true;
             this.customerNameText.Size = new System.Drawing.Size(121, 23);
@@ -580,7 +569,7 @@ namespace MaktabaDesktop
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(383, 29);
+            this.label22.Location = new System.Drawing.Point(386, 11);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(62, 15);
             this.label22.TabIndex = 41;
@@ -589,7 +578,7 @@ namespace MaktabaDesktop
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(659, 2);
+            this.label21.Location = new System.Drawing.Point(582, 11);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(77, 15);
             this.label21.TabIndex = 40;
@@ -597,7 +586,7 @@ namespace MaktabaDesktop
             // 
             // countryText
             // 
-            this.countryText.Location = new System.Drawing.Point(452, 68);
+            this.countryText.Location = new System.Drawing.Point(455, 51);
             this.countryText.Name = "countryText";
             this.countryText.ReadOnly = true;
             this.countryText.Size = new System.Drawing.Size(121, 23);
@@ -606,7 +595,7 @@ namespace MaktabaDesktop
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(383, 71);
+            this.label19.Location = new System.Drawing.Point(386, 51);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(53, 15);
             this.label19.TabIndex = 17;
@@ -615,7 +604,7 @@ namespace MaktabaDesktop
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(227, 71);
+            this.label20.Location = new System.Drawing.Point(230, 51);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(31, 15);
             this.label20.TabIndex = 16;
@@ -624,7 +613,7 @@ namespace MaktabaDesktop
             // 
             // CityText
             // 
-            this.CityText.Location = new System.Drawing.Point(294, 68);
+            this.CityText.Location = new System.Drawing.Point(297, 51);
             this.CityText.Name = "CityText";
             this.CityText.ReadOnly = true;
             this.CityText.Size = new System.Drawing.Size(83, 23);
@@ -633,14 +622,14 @@ namespace MaktabaDesktop
             // 
             // orderDateText
             // 
-            this.orderDateText.Location = new System.Drawing.Point(78, 65);
+            this.orderDateText.Location = new System.Drawing.Point(81, 51);
             this.orderDateText.Name = "orderDateText";
             this.orderDateText.Size = new System.Drawing.Size(141, 23);
             this.orderDateText.TabIndex = 14;
             // 
             // houseText
             // 
-            this.houseText.Location = new System.Drawing.Point(452, 115);
+            this.houseText.Location = new System.Drawing.Point(455, 91);
             this.houseText.Name = "houseText";
             this.houseText.ReadOnly = true;
             this.houseText.Size = new System.Drawing.Size(121, 23);
@@ -650,7 +639,7 @@ namespace MaktabaDesktop
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(383, 118);
+            this.label18.Location = new System.Drawing.Point(386, 94);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(44, 15);
             this.label18.TabIndex = 12;
@@ -659,7 +648,7 @@ namespace MaktabaDesktop
             // 
             // TotalPriceText
             // 
-            this.TotalPriceText.Location = new System.Drawing.Point(294, 25);
+            this.TotalPriceText.Location = new System.Drawing.Point(297, 11);
             this.TotalPriceText.Name = "TotalPriceText";
             this.TotalPriceText.ReadOnly = true;
             this.TotalPriceText.Size = new System.Drawing.Size(83, 23);
@@ -669,7 +658,7 @@ namespace MaktabaDesktop
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(224, 29);
+            this.label17.Location = new System.Drawing.Point(227, 11);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(64, 15);
             this.label17.TabIndex = 10;
@@ -678,7 +667,7 @@ namespace MaktabaDesktop
             // 
             // blockText
             // 
-            this.blockText.Location = new System.Drawing.Point(294, 110);
+            this.blockText.Location = new System.Drawing.Point(297, 86);
             this.blockText.Name = "blockText";
             this.blockText.ReadOnly = true;
             this.blockText.Size = new System.Drawing.Size(83, 23);
@@ -688,7 +677,7 @@ namespace MaktabaDesktop
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(227, 118);
+            this.label16.Location = new System.Drawing.Point(230, 94);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(39, 15);
             this.label16.TabIndex = 8;
@@ -698,7 +687,7 @@ namespace MaktabaDesktop
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(5, 113);
+            this.label15.Location = new System.Drawing.Point(8, 89);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(40, 15);
             this.label15.TabIndex = 6;
@@ -707,7 +696,7 @@ namespace MaktabaDesktop
             // 
             // streetText
             // 
-            this.streetText.Location = new System.Drawing.Point(78, 110);
+            this.streetText.Location = new System.Drawing.Point(81, 86);
             this.streetText.Name = "streetText";
             this.streetText.ReadOnly = true;
             this.streetText.Size = new System.Drawing.Size(141, 23);
@@ -717,7 +706,7 @@ namespace MaktabaDesktop
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(5, 71);
+            this.label14.Location = new System.Drawing.Point(8, 51);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(67, 15);
             this.label14.TabIndex = 4;
@@ -725,7 +714,7 @@ namespace MaktabaDesktop
             // 
             // OrderIDText
             // 
-            this.OrderIDText.Location = new System.Drawing.Point(78, 23);
+            this.OrderIDText.Location = new System.Drawing.Point(81, 11);
             this.OrderIDText.Name = "OrderIDText";
             this.OrderIDText.ReadOnly = true;
             this.OrderIDText.Size = new System.Drawing.Size(141, 23);
@@ -734,7 +723,7 @@ namespace MaktabaDesktop
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(5, 27);
+            this.label13.Location = new System.Drawing.Point(8, 11);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(48, 15);
             this.label13.TabIndex = 2;
@@ -755,7 +744,7 @@ namespace MaktabaDesktop
             this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel8.Location = new System.Drawing.Point(1039, 0);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(319, 143);
+            this.panel8.Size = new System.Drawing.Size(319, 131);
             this.panel8.TabIndex = 1;
             // 
             // createPDFBtn
@@ -1092,7 +1081,6 @@ namespace MaktabaDesktop
         private System.Windows.Forms.Button StatusBtn;
         private System.Windows.Forms.Button RevenueBtn;
         private System.Windows.Forms.ListBox bookListforOrder;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox OrderColumnNames;
         private System.Windows.Forms.ComboBox bookitemcolumnNames;
         private System.Windows.Forms.PictureBox pictureBox1;

@@ -152,7 +152,7 @@ namespace MaktabaDesktop
         }
         public void uploadImage()
         {
-            if (imageLocationText.Text != null)
+            if ( !string.IsNullOrEmpty(imageLocationText.Text))
             {
                 string connstring = "DefaultEndpointsProtocol=https;AccountName=maktaba0images;AccountKey=Ghl5+YVechO7PR+7xAwy79sUkEqnczajZSg13Z8EVI6hmTJfjUb2NlJo4C6VJX0tNDF+xGmoLYfigFMV1GIo4A==;EndpointSuffix=core.windows.net";
                 string containername = "images";
@@ -193,47 +193,51 @@ namespace MaktabaDesktop
 
         private void updateBtn_Click(object sender, EventArgs e)
         {
-            if (book != null)
+            if (book.ISBAN!=null)
             {
-                if (bookItem == null)
-                {
-                    bookItem = new BookItem();
-                    settingValuesForUpdateBtn();
-                    uploadImage();
-                    bookItemList = new BookItemList();
-                    bookItemList.Add(bookItem);
+                if(!string.IsNullOrEmpty(imageLocationText.Text) && !string.IsNullOrEmpty(PriceText.Text)){
+                    if (bookItem == null)
+                    {
+                        bookItem = new BookItem();
+                        settingValuesForUpdateBtn();
+                        uploadImage();
+                        bookItemList = new BookItemList();
+                        bookItemList.Add(bookItem);
 
-                    if (bookItem.getVaild())
-                    {
-                        MessageBox.Show("Adding is Sucssfull");
-                        bookItem = null;
-                        ManageBookItems frm = new ManageBookItems();
-                        frm.Close();
-                    }
-                    else{
-                       
-                        MessageBox.Show("ERRRO: " + bookItem.getErroMessage());
-                    }
-                    
-                }
-                else
-                {
-                    bookItemList = new BookItemList();
-                    settingValuesForUpdateBtn();
-                    bookItemList.Update(bookItem);
-                    if (bookItem.getVaild())
-                    {
-                        MessageBox.Show("Adding is Sucssfull");
-                        ManageBookItems frm = new ManageBookItems();
-                        frm.Close();
+                        if (bookItem.getVaild())
+                        {
+                            MessageBox.Show("Adding is Sucssfull");
+                            bookItem = null;
+                            this.Close();
+                        }
+                        else
+                        {
+
+                            MessageBox.Show("ERRRO: " + bookItem.getErroMessage());
+                        }
+
                     }
                     else
                     {
-                      
-                        MessageBox.Show("ERRRO: " + bookItem.getErroMessage());
+                        bookItemList = new BookItemList();
+                        settingValuesForUpdateBtn();
+                        uploadImage();
+                        bookItemList.Update(bookItem);
+                        if (bookItem.getVaild())
+                        {
+                            MessageBox.Show("Adding is Sucssfull");
+                            ManageBookItems frm = new ManageBookItems();
+                            frm.Close();
+                        }
+                        else
+                        {
+
+                            MessageBox.Show("ERRRO: " + bookItem.getErroMessage());
+                        }
+                        bookItem = null;
                     }
-                    bookItem = null;
-                }
+                }else
+                    MessageBox.Show("You Must enter prcie and image");
                
             }
             else
@@ -307,6 +311,11 @@ namespace MaktabaDesktop
 
             
             
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
