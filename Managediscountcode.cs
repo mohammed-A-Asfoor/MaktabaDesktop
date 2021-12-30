@@ -30,60 +30,72 @@ namespace MaktabaDesktop
             //adding the status 
             statusCombo.Items.Add("Active");
             statusCombo.Items.Add("Disabled");
-
+            statusCombo.SelectedIndex = 0;
             //creating the columns list for search function
             columnList.DataSource = discountCodeList.ColumnNames;
         }
         public void loadDiscountTable()
         {
+            discountCodeList = new discountCodeList();
             discountCodeList.Populate();
             dataGridView1.DataSource = discountCodeList.DataTable;
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //getting the ID from the Table
-            string discountCodeID = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-            //creating the Object
-            discount_Code = new Discount_Code(discountCodeID);
-            //getting the data from the Table
-            discountCodeList.Populate(discount_Code);
-            //showing the values to the Admin
-            DiscountCodeText.Text = discount_Code.codeID;
-            Persantage.Value = Convert.ToDecimal(discount_Code.Amount);
-            if (discount_Code.Status != "True")
+            try
             {
-                statusCombo.SelectedIndex = 1;
-            }
-            else
-                statusCombo.SelectedIndex = 0;
+                if (dataGridView1.RowCount != 0)
+                {
+                    //getting the ID from the Table
+                    string discountCodeID = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                    //creating the Object
+                    discount_Code = new Discount_Code(discountCodeID);
+                    //getting the data from the Table
+                    discountCodeList.Populate(discount_Code);
+                    //showing the values to the Admin
+                    DiscountCodeText.Text = discount_Code.codeID;
+                    Persantage.Value = Convert.ToDecimal(discount_Code.Amount);
+                    if (discount_Code.Status != "True")
+                    {
+                        statusCombo.SelectedIndex = 1;
+                    }
+                    else
+                        statusCombo.SelectedIndex = 0;
 
-            //showing who last Editied the Record
-            admin = new Admin(discount_Code.Admin_ID);
-            adminList.Populate(admin);
-            AdminLable.Text = "Last Edit was by " + admin.Admin_Name;
+                    //showing who last Editied the Record
+                    admin = new Admin(discount_Code.Admin_ID);
+                    adminList.Populate(admin);
+                    AdminLable.Text = "Last Edit was by " + admin.Admin_Name;
+                }
+                else
+                    MessageBox.Show("No Data to Display");
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
 
 
         }
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            if (valueText.Text != "")
+            if (!string.IsNullOrEmpty(valueText.Text) )
             {
                 //if statmens to verify the value type
-                if (columnList.SelectedItem.ToString() == "Status")
+                if (columnList.SelectedIndex==1)
                 {
                     //because the column type is boolean
                     if (valueText.Text == "active")
                     {
                        
                         valueText.Text = "True";
-                        discountCodeList.Filter(columnList.SelectedItem.ToString(), valueText.Text);
+                        discountCodeList.Filter(columnList.SelectedItem.ToString(), "True");
                     }
                     else if (valueText.Text == "disabled")
                     {
                         valueText.Text = "False";
-                        discountCodeList.Filter(columnList.SelectedItem.ToString(), valueText.Text);
+                        discountCodeList.Filter(columnList.SelectedItem.ToString(), "False");
                         
                     }
                     else
@@ -93,7 +105,7 @@ namespace MaktabaDesktop
                     }
                     
                    
-                }else if (columnList.SelectedItem.ToString() == "Admin_ID")
+                }else if (columnList.SelectedIndex==3 || columnList.SelectedIndex == 2)
                 {
                     int num;
                     bool isNum=int.TryParse(valueText.Text, out num);
@@ -104,7 +116,13 @@ namespace MaktabaDesktop
                         MessageBox.Show("The Value must be Number");
                     //other columns are string so the value type won return an error
                 }else
-                    discountCodeList.Filter(columnList.SelectedItem.ToString(), valueText.Text);
+                    try
+                    {
+                        discountCodeList.Filter(columnList.SelectedItem.ToString(), valueText.Text);
+                    }catch(Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
 
 
             }
@@ -114,6 +132,8 @@ namespace MaktabaDesktop
 
         private void clearSearchBtn_Click(object sender, EventArgs e)
         {
+
+           
             loadDiscountTable();
         }
         public void loaddiscountCodeData()

@@ -28,7 +28,10 @@ namespace MaktabaDesktop
         private void BookInformationForm_Load(object sender, EventArgs e)
         {
             bookList = new BookList();
-
+            book = new Book();
+            bookList.getColumnName(book);
+            comboBox1.DataSource = bookList.ColumnNames;
+            book = null;
             //creating the catagory list
             catagoryList = new CatagoryList();
             catagoryList.Populate();
@@ -38,18 +41,41 @@ namespace MaktabaDesktop
         } //to load data and refresh table after editing it
         public void loadDataToTable()
         {
-            bookList.Populate();
+            try
+            {
+                bookList = new BookList();
+                bookList.Populate();
 
-            BookInformationTable.DataSource = bookList.DataTable;
+               
+                    BookInformationTable.DataSource = bookList.DataTable;
+                    
+             
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Error: "+ex.Message);
+            }
+            
         }
 
         private void BookInformationTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            ISPAN = BookInformationTable.CurrentRow.Cells[0].Value.ToString();
-            book = new Book(ISPAN);
-            
-             bookList.Populate(book);
-            loadDataToTextfields();
+            try
+            {
+                if (BookInformationTable.RowCount != 0)
+                {
+                    ISPAN = BookInformationTable.CurrentRow.Cells[0].Value.ToString();
+                    book = new Book(ISPAN);
+
+                    bookList.Populate(book);
+                    loadDataToTextfields();
+                }
+                else
+                    MessageBox.Show("No Books to show");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
             
         }
        
@@ -113,6 +139,7 @@ namespace MaktabaDesktop
                     {
                         loadDataToTable();
                         MessageBox.Show("Record Saved");
+                        
                     }
                         
                 }
@@ -181,8 +208,60 @@ namespace MaktabaDesktop
             ISNAPtext.Text = null;
             autherText.Text = null;
             bookTitleText.Text = null;
+            publisherText.Text = null;
             dateTimePicker1.Value = DateTime.Today;
             catagorycombo.SelectedIndex = 0;
+        }
+
+        private void searchBtn_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(searchValueTxt.Text))
+            {
+                if (comboBox1.SelectedIndex == 4)
+                {
+                    DateTime date;
+                    bool isDate = DateTime.TryParse(searchValueTxt.Text, out date);
+
+                    if (isDate)
+                    {
+                        bookList.Filter(comboBox1.SelectedItem.ToString(), date.ToString("yyyy/MM/dd"));
+                        //BookInformationTable.DataSource = 
+
+                    }
+                    else
+                        MessageBox.Show("You Must Enter a Valild Date");
+                }
+                else if (comboBox1.SelectedIndex == 5)
+                {
+                    int id;
+                    bool isInt = int.TryParse(searchValueTxt.Text, out id);
+
+                    if (isInt)
+                    {
+                        bookList.Filter(comboBox1.SelectedItem.ToString(), searchValueTxt.Text);
+
+                    }
+                    else
+                        MessageBox.Show("You Must Enter an Number");
+                }
+                else
+                {
+                    try { bookList.Filter(comboBox1.SelectedItem.ToString(), searchValueTxt.Text); } catch (Exception ex)
+                    {
+                        MessageBox.Show("Error:" + ex.Message);
+                    }
+                }
+                
+
+            }
+            else
+                MessageBox.Show("TextBox is Empty");
+        }
+
+        private void clearSearchBtn_Click(object sender, EventArgs e)
+        {
+
+            loadDataToTable();
         }
     }
 }

@@ -31,6 +31,8 @@ namespace MaktabaDesktop
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.earningText = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.totalBooks = new System.Windows.Forms.TextBox();
             this.totalCustomers = new System.Windows.Forms.TextBox();
@@ -65,6 +67,8 @@ namespace MaktabaDesktop
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.earningText);
+            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.totalBooks);
             this.groupBox1.Controls.Add(this.totalCustomers);
@@ -83,11 +87,29 @@ namespace MaktabaDesktop
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Genral Information";
             // 
+            // earningText
+            // 
+            this.earningText.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.earningText.Location = new System.Drawing.Point(960, 82);
+            this.earningText.Name = "earningText";
+            this.earningText.Size = new System.Drawing.Size(100, 34);
+            this.earningText.TabIndex = 13;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(829, 85);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(78, 28);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Earning";
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(817, 34);
+            this.label6.Location = new System.Drawing.Point(829, 34);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(73, 28);
             this.label6.TabIndex = 11;
@@ -96,7 +118,7 @@ namespace MaktabaDesktop
             // totalBooks
             // 
             this.totalBooks.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.totalBooks.Location = new System.Drawing.Point(908, 28);
+            this.totalBooks.Location = new System.Drawing.Point(960, 28);
             this.totalBooks.Name = "totalBooks";
             this.totalBooks.Size = new System.Drawing.Size(100, 34);
             this.totalBooks.TabIndex = 10;
@@ -195,10 +217,15 @@ namespace MaktabaDesktop
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Left;
             this.dataGridView1.Location = new System.Drawing.Point(0, 62);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.Size = new System.Drawing.Size(604, 205);
             this.dataGridView1.TabIndex = 2;
@@ -243,6 +270,7 @@ namespace MaktabaDesktop
             this.Controls.Add(this.panel1);
             this.Name = "Status";
             this.Text = "Revenue";
+            this.Load += new System.EventHandler(this.Status_Load);
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -273,5 +301,7 @@ namespace MaktabaDesktop
         private System.Windows.Forms.TextBox totalBooks;
         private System.Windows.Forms.TextBox totalCustomers;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox earningText;
+        private System.Windows.Forms.Label label7;
     }
 }

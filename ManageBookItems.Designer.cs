@@ -37,7 +37,6 @@ namespace MaktabaDesktop
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.updateBtn = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.columnList = new System.Windows.Forms.ComboBox();
@@ -115,6 +114,7 @@ namespace MaktabaDesktop
             this.RefreashBtn.TabIndex = 4;
             this.RefreashBtn.Text = "Refreash";
             this.RefreashBtn.UseVisualStyleBackColor = true;
+            this.RefreashBtn.Click += new System.EventHandler(this.RefreashBtn_Click);
             // 
             // label12
             // 
@@ -159,7 +159,6 @@ namespace MaktabaDesktop
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.button1);
             this.groupBox4.Controls.Add(this.updateBtn);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupBox4.Location = new System.Drawing.Point(482, 0);
@@ -168,21 +167,11 @@ namespace MaktabaDesktop
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(0, 53);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(203, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Add New Book info";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // updateBtn
             // 
             this.updateBtn.Location = new System.Drawing.Point(0, 15);
             this.updateBtn.Name = "updateBtn";
-            this.updateBtn.Size = new System.Drawing.Size(203, 23);
+            this.updateBtn.Size = new System.Drawing.Size(203, 59);
             this.updateBtn.TabIndex = 1;
             this.updateBtn.Text = "Add";
             this.updateBtn.UseVisualStyleBackColor = true;
@@ -292,6 +281,7 @@ namespace MaktabaDesktop
             // 
             this.imageLocationText.Location = new System.Drawing.Point(338, 20);
             this.imageLocationText.Name = "imageLocationText";
+            this.imageLocationText.ReadOnly = true;
             this.imageLocationText.Size = new System.Drawing.Size(174, 23);
             this.imageLocationText.TabIndex = 18;
             // 
@@ -299,7 +289,7 @@ namespace MaktabaDesktop
             // 
             this.searchforImage.Location = new System.Drawing.Point(289, 46);
             this.searchforImage.Name = "searchforImage";
-            this.searchforImage.Size = new System.Drawing.Size(223, 23);
+            this.searchforImage.Size = new System.Drawing.Size(223, 39);
             this.searchforImage.TabIndex = 27;
             this.searchforImage.Text = "Search For Image";
             this.searchforImage.UseVisualStyleBackColor = true;
@@ -554,7 +544,6 @@ namespace MaktabaDesktop
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button updateBtn;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button searchBtn;

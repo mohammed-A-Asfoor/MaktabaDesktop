@@ -34,7 +34,6 @@ namespace MaktabaDesktop
             this.label2 = new System.Windows.Forms.Label();
             this.passwordText = new System.Windows.Forms.TextBox();
             this.LoginBtn = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // userNameText
@@ -81,23 +80,11 @@ namespace MaktabaDesktop
             this.LoginBtn.UseVisualStyleBackColor = true;
             this.LoginBtn.Click += new System.EventHandler(this.LoginBtn_Click);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(43, 117);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(104, 12);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Forget your Password?";
-            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(266, 193);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.LoginBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.passwordText);
@@ -118,6 +105,5 @@ namespace MaktabaDesktop
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox passwordText;
         private System.Windows.Forms.Button LoginBtn;
-        private System.Windows.Forms.Label label3;
     }
 }

@@ -30,8 +30,8 @@ namespace MaktabaDesktop
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.AdminTable = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -47,6 +47,7 @@ namespace MaktabaDesktop
             this.label2 = new System.Windows.Forms.Label();
             this.AdminNameText = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AdminTable)).BeginInit();
             this.panel3.SuspendLayout();
@@ -56,30 +57,32 @@ namespace MaktabaDesktop
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label4);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(614, 100);
             this.panel1.TabIndex = 0;
             // 
+            // label4
+            // 
+            this.label4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(0, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(614, 74);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Manage Admins";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.AdminTable);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 100);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(614, 182);
             this.panel2.TabIndex = 1;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(3, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // AdminTable
             // 
@@ -244,6 +247,7 @@ namespace MaktabaDesktop
             this.Name = "Manage_Admins";
             this.Text = "Manage_Admins";
             this.Load += new System.EventHandler(this.Manage_Admins_Load);
+            this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.AdminTable)).EndInit();
             this.panel3.ResumeLayout(false);
@@ -258,7 +262,6 @@ namespace MaktabaDesktop
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView AdminTable;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
@@ -274,5 +277,6 @@ namespace MaktabaDesktop
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox AdminNameText;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
     }
 }

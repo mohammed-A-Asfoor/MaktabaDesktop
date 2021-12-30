@@ -45,12 +45,18 @@ namespace MaktabaDesktop
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.clearSearchBtn = new System.Windows.Forms.Button();
+            this.searchBtn = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.searchValueTxt = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.publisherText = new System.Windows.Forms.TextBox();
+            this.Lable1234 = new System.Windows.Forms.Label();
             this.catagorycombo = new System.Windows.Forms.ComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.publisherText = new System.Windows.Forms.TextBox();
-            this.Lable1234 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.BookInformationTable)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -69,7 +75,7 @@ namespace MaktabaDesktop
             this.BookInformationTable.Name = "BookInformationTable";
             this.BookInformationTable.ReadOnly = true;
             this.BookInformationTable.RowTemplate.Height = 25;
-            this.BookInformationTable.Size = new System.Drawing.Size(800, 239);
+            this.BookInformationTable.Size = new System.Drawing.Size(921, 239);
             this.BookInformationTable.TabIndex = 0;
             this.BookInformationTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BookInformationTable_CellClick);
             // 
@@ -86,14 +92,14 @@ namespace MaktabaDesktop
             // 
             this.ISNAPtext.Location = new System.Drawing.Point(96, 20);
             this.ISNAPtext.Name = "ISNAPtext";
-            this.ISNAPtext.Size = new System.Drawing.Size(100, 23);
+            this.ISNAPtext.Size = new System.Drawing.Size(130, 23);
             this.ISNAPtext.TabIndex = 2;
             // 
             // bookTitleText
             // 
             this.bookTitleText.Location = new System.Drawing.Point(96, 61);
             this.bookTitleText.Name = "bookTitleText";
-            this.bookTitleText.Size = new System.Drawing.Size(100, 23);
+            this.bookTitleText.Size = new System.Drawing.Size(130, 23);
             this.bookTitleText.TabIndex = 4;
             // 
             // label2
@@ -109,7 +115,7 @@ namespace MaktabaDesktop
             // 
             this.autherText.Location = new System.Drawing.Point(96, 102);
             this.autherText.Name = "autherText";
-            this.autherText.Size = new System.Drawing.Size(100, 23);
+            this.autherText.Size = new System.Drawing.Size(130, 23);
             this.autherText.TabIndex = 6;
             // 
             // lable3
@@ -124,7 +130,7 @@ namespace MaktabaDesktop
             // lable4
             // 
             this.lable4.AutoSize = true;
-            this.lable4.Location = new System.Drawing.Point(215, 23);
+            this.lable4.Location = new System.Drawing.Point(232, 23);
             this.lable4.Name = "lable4";
             this.lable4.Size = new System.Drawing.Size(120, 15);
             this.lable4.TabIndex = 7;
@@ -132,9 +138,9 @@ namespace MaktabaDesktop
             // 
             // editBtn
             // 
-            this.editBtn.Location = new System.Drawing.Point(113, 42);
+            this.editBtn.Location = new System.Drawing.Point(100, 23);
             this.editBtn.Name = "editBtn";
-            this.editBtn.Size = new System.Drawing.Size(75, 23);
+            this.editBtn.Size = new System.Drawing.Size(75, 42);
             this.editBtn.TabIndex = 9;
             this.editBtn.Text = "Edit";
             this.editBtn.UseVisualStyleBackColor = true;
@@ -142,9 +148,9 @@ namespace MaktabaDesktop
             // 
             // addBtn
             // 
-            this.addBtn.Location = new System.Drawing.Point(7, 42);
+            this.addBtn.Location = new System.Drawing.Point(3, 20);
             this.addBtn.Name = "addBtn";
-            this.addBtn.Size = new System.Drawing.Size(75, 23);
+            this.addBtn.Size = new System.Drawing.Size(75, 42);
             this.addBtn.TabIndex = 10;
             this.addBtn.Text = "Add";
             this.addBtn.UseVisualStyleBackColor = true;
@@ -152,9 +158,9 @@ namespace MaktabaDesktop
             // 
             // deleteBtn
             // 
-            this.deleteBtn.Location = new System.Drawing.Point(7, 86);
+            this.deleteBtn.Location = new System.Drawing.Point(3, 78);
             this.deleteBtn.Name = "deleteBtn";
-            this.deleteBtn.Size = new System.Drawing.Size(75, 23);
+            this.deleteBtn.Size = new System.Drawing.Size(75, 42);
             this.deleteBtn.TabIndex = 11;
             this.deleteBtn.Text = "Delete";
             this.deleteBtn.UseVisualStyleBackColor = true;
@@ -162,9 +168,9 @@ namespace MaktabaDesktop
             // 
             // clearBtn
             // 
-            this.clearBtn.Location = new System.Drawing.Point(113, 86);
+            this.clearBtn.Location = new System.Drawing.Point(100, 78);
             this.clearBtn.Name = "clearBtn";
-            this.clearBtn.Size = new System.Drawing.Size(75, 23);
+            this.clearBtn.Size = new System.Drawing.Size(75, 42);
             this.clearBtn.TabIndex = 12;
             this.clearBtn.Text = "Clear";
             this.clearBtn.UseVisualStyleBackColor = true;
@@ -173,7 +179,7 @@ namespace MaktabaDesktop
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(215, 61);
+            this.label3.Location = new System.Drawing.Point(232, 61);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 15);
             this.label3.TabIndex = 13;
@@ -184,7 +190,7 @@ namespace MaktabaDesktop
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 53);
+            this.panel1.Size = new System.Drawing.Size(921, 53);
             this.panel1.TabIndex = 15;
             // 
             // panel2
@@ -194,11 +200,17 @@ namespace MaktabaDesktop
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 292);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(800, 158);
+            this.panel2.Size = new System.Drawing.Size(921, 158);
             this.panel2.TabIndex = 16;
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.clearSearchBtn);
+            this.panel4.Controls.Add(this.searchBtn);
+            this.panel4.Controls.Add(this.label5);
+            this.panel4.Controls.Add(this.label4);
+            this.panel4.Controls.Add(this.searchValueTxt);
+            this.panel4.Controls.Add(this.comboBox1);
             this.panel4.Controls.Add(this.publisherText);
             this.panel4.Controls.Add(this.Lable1234);
             this.panel4.Controls.Add(this.catagorycombo);
@@ -214,21 +226,91 @@ namespace MaktabaDesktop
             this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(535, 158);
+            this.panel4.Size = new System.Drawing.Size(735, 158);
             this.panel4.TabIndex = 16;
+            // 
+            // clearSearchBtn
+            // 
+            this.clearSearchBtn.Location = new System.Drawing.Point(625, 94);
+            this.clearSearchBtn.Name = "clearSearchBtn";
+            this.clearSearchBtn.Size = new System.Drawing.Size(102, 29);
+            this.clearSearchBtn.TabIndex = 23;
+            this.clearSearchBtn.Text = "clear";
+            this.clearSearchBtn.UseVisualStyleBackColor = true;
+            this.clearSearchBtn.Click += new System.EventHandler(this.clearSearchBtn_Click);
+            // 
+            // searchBtn
+            // 
+            this.searchBtn.Location = new System.Drawing.Point(518, 94);
+            this.searchBtn.Name = "searchBtn";
+            this.searchBtn.Size = new System.Drawing.Size(102, 29);
+            this.searchBtn.TabIndex = 13;
+            this.searchBtn.Text = "Search";
+            this.searchBtn.UseVisualStyleBackColor = true;
+            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(518, 68);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(38, 15);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "Value:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(518, 24);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(84, 15);
+            this.label4.TabIndex = 21;
+            this.label4.Text = "column name:";
+            // 
+            // searchValueTxt
+            // 
+            this.searchValueTxt.Location = new System.Drawing.Point(608, 65);
+            this.searchValueTxt.Name = "searchValueTxt";
+            this.searchValueTxt.Size = new System.Drawing.Size(119, 23);
+            this.searchValueTxt.TabIndex = 20;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(608, 24);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(119, 23);
+            this.comboBox1.TabIndex = 19;
+            // 
+            // publisherText
+            // 
+            this.publisherText.Location = new System.Drawing.Point(358, 105);
+            this.publisherText.Name = "publisherText";
+            this.publisherText.Size = new System.Drawing.Size(136, 23);
+            this.publisherText.TabIndex = 18;
+            // 
+            // Lable1234
+            // 
+            this.Lable1234.AutoSize = true;
+            this.Lable1234.Location = new System.Drawing.Point(235, 105);
+            this.Lable1234.Name = "Lable1234";
+            this.Lable1234.Size = new System.Drawing.Size(56, 15);
+            this.Lable1234.TabIndex = 17;
+            this.Lable1234.Text = "Publisher";
             // 
             // catagorycombo
             // 
             this.catagorycombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.catagorycombo.FormattingEnabled = true;
-            this.catagorycombo.Location = new System.Drawing.Point(341, 61);
+            this.catagorycombo.Location = new System.Drawing.Point(358, 61);
             this.catagorycombo.Name = "catagorycombo";
             this.catagorycombo.Size = new System.Drawing.Size(136, 23);
             this.catagorycombo.TabIndex = 16;
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(341, 20);
+            this.dateTimePicker1.Location = new System.Drawing.Point(358, 20);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(136, 23);
             this.dateTimePicker1.TabIndex = 15;
@@ -240,9 +322,9 @@ namespace MaktabaDesktop
             this.panel3.Controls.Add(this.addBtn);
             this.panel3.Controls.Add(this.deleteBtn);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(600, 0);
+            this.panel3.Location = new System.Drawing.Point(741, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(200, 158);
+            this.panel3.Size = new System.Drawing.Size(180, 158);
             this.panel3.TabIndex = 15;
             // 
             // panel5
@@ -251,30 +333,14 @@ namespace MaktabaDesktop
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(0, 53);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(800, 239);
+            this.panel5.Size = new System.Drawing.Size(921, 239);
             this.panel5.TabIndex = 17;
-            // 
-            // publisherText
-            // 
-            this.publisherText.Location = new System.Drawing.Point(341, 105);
-            this.publisherText.Name = "publisherText";
-            this.publisherText.Size = new System.Drawing.Size(136, 23);
-            this.publisherText.TabIndex = 18;
-            // 
-            // Lable1234
-            // 
-            this.Lable1234.AutoSize = true;
-            this.Lable1234.Location = new System.Drawing.Point(218, 105);
-            this.Lable1234.Name = "Lable1234";
-            this.Lable1234.Size = new System.Drawing.Size(56, 15);
-            this.Lable1234.TabIndex = 17;
-            this.Lable1234.Text = "Publisher";
             // 
             // BookInformationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(921, 450);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -315,5 +381,11 @@ namespace MaktabaDesktop
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.TextBox publisherText;
         private System.Windows.Forms.Label Lable1234;
+        private System.Windows.Forms.Button clearSearchBtn;
+        private System.Windows.Forms.Button searchBtn;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox searchValueTxt;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

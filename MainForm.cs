@@ -56,11 +56,21 @@ namespace MaktabaDesktop
         }
         public void loadBookitemTable()
         {
-            bookItemList.Populate();
-            BooksItemsTable.DataSource = bookItemList.DataTable;
+            try
+            {
+                bookItemList = new BookItemList();
+                bookItemList.Populate();
+                BooksItemsTable.DataSource = bookItemList.DataTable;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+           
         }
         public void loadOrdersTable()
         {
+            orderList = new OrderList();
             orderList.Populate();
             OrdersTable.DataSource = orderList.DataTable;
             
@@ -69,10 +79,27 @@ namespace MaktabaDesktop
 
         private void BooksItemsTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            bookItemID = BooksItemsTable.CurrentRow.Cells[0].Value.ToString();
-            bookItem = new BookItem(bookItemID);
-            bookItemList.Populate(bookItem);
-            LoadDataIntoBookItem();
+            try
+            {
+                if (BooksItemsTable.RowCount!=0)
+                {
+                    bookItemID = BooksItemsTable.CurrentRow.Cells[0].Value.ToString();
+                    
+                        bookItem = new BookItem(bookItemID);
+                        bookItemList.Populate(bookItem);
+                        LoadDataIntoBookItem();
+
+                }
+                else
+                    MessageBox.Show("No Book item  show");
+
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            
         }
         public void LoadDataIntoBookItem()
         {
@@ -115,7 +142,7 @@ namespace MaktabaDesktop
 
                     if (isDate)
                     {
-                        bookItemList.Filter(bookitemcolumnNames.SelectedItem.ToString(), ValueText.Text);
+                        bookItemList.Filter(bookitemcolumnNames.SelectedItem.ToString(), date.ToString("yyyy/MM/dd"));
 
                     }
                     else
@@ -131,6 +158,16 @@ namespace MaktabaDesktop
                     }
                     else
                         MessageBox.Show("Value must be a Number");
+                }
+                else
+                {
+                    try
+                    {
+                        bookItemList.Filter(bookitemcolumnNames.SelectedItem.ToString(), ValueText.Text);
+                    }catch(Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
                 }
               
                
@@ -171,30 +208,35 @@ namespace MaktabaDesktop
 
         private void OrdersTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            orderID = OrdersTable.CurrentRow.Cells[0].Value.ToString();
-            order = new Order(orderID);
-            orderList.Populate(order);
+            if (OrdersTable.RowCount != 0)
+            {
+                orderID = OrdersTable.CurrentRow.Cells[0].Value.ToString();
+                order = new Order(orderID);
+                orderList.Populate(order);
 
-            OrderIDText.Text = order.Order_id;
-            TotalPriceText.Text = order.Total_price;
-            orderDateText.Value = Convert.ToDateTime(order.Order_date);
+                OrderIDText.Text = order.Order_id;
+                TotalPriceText.Text = order.Total_price;
+                orderDateText.Value = Convert.ToDateTime(order.Order_date);
 
-            addresses = new Addresses(order.Address_id);
-            addressesList = new AddressesList();
-            addressesList.Populate(addresses);
+                addresses = new Addresses(order.Address_id);
+                addressesList = new AddressesList();
+                addressesList.Populate(addresses);
 
-            streetText.Text = addresses.Street;
-            blockText.Text = addresses.Block;
-            houseText.Text = addresses.House;
-            CityText.Text = addresses.City;
-            countryText.Text = addresses.Country;
+                streetText.Text = addresses.Street;
+                blockText.Text = addresses.Block;
+                houseText.Text = addresses.House;
+                CityText.Text = addresses.City;
+                countryText.Text = addresses.Country;
 
-            customer = new customer(order.CustomerID);
-            customerList = new CustomerList();
-            customerList.Populate(customer);
+                customer = new customer(order.CustomerID);
+                customerList = new CustomerList();
+                customerList.Populate(customer);
 
-            customerNameText.Text = customer.Customer_fname + " " + customer.customer_lname;
-            loadBookList();
+                customerNameText.Text = customer.Customer_fname + " " + customer.customer_lname;
+                loadBookList();
+            }
+            else
+                MessageBox.Show("No Orders to Display");
            
 
         }
@@ -215,13 +257,14 @@ namespace MaktabaDesktop
                 Book bookinfo = new Book(bookItem1.ISBAN);
                 bookList.Populate(bookinfo);
 
-                bookListforOrder.Items.Add("ISBAN: " + bookItem1.ISBAN + "     Book Title: " + bookinfo.Book_Title + "   book Price: " + bookItem1.Book_price);
+                bookListforOrder.Items.Add("BookItem ID: " + bookItem1.Book_Itme_id + "     Book Title: " + bookinfo.Book_Title + "   book Price: " + bookItem1.Book_price);
             }
 
         }
 
         private void ClearTableBtn_Click(object sender, EventArgs e)
         {
+            bookItemList = new BookItemList();
             bookItemList.Populate();
             BooksItemsTable.DataSource = bookItemList.DataTable;
         }
@@ -448,7 +491,7 @@ namespace MaktabaDesktop
 
                 if (isDate)
                 {
-                    orderList.Filter(OrderColumnNames.SelectedItem.ToString(), orderSearchValueText.Text);
+                    orderList.Filter(OrderColumnNames.SelectedItem.ToString(), date.ToString("yyyy/MM/dd"));
 
                 }
                 else
@@ -467,10 +510,15 @@ namespace MaktabaDesktop
                 else
                     MessageBox.Show("Value must be a number");
             }
+            else
+            {
+
+            }
         }
 
         private void clearOrderSearch_Click(object sender, EventArgs e)
         {
+            orderList = new OrderList();
             orderList.Populate();
             loadOrdersTable();
         }
@@ -496,7 +544,7 @@ namespace MaktabaDesktop
                 if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     string filepath = Path.GetDirectoryName(saveFileDialog1.FileName);
-                    MessageBox.Show(filepath);
+                    
 
                     Document document = new Document(PageSize.A5, 20f, 20f, 30f, 30f);
                     PdfWriter pdfWriter = PdfWriter.GetInstance(document, new FileStream(saveFileDialog1.FileName, FileMode.Create));
@@ -552,6 +600,24 @@ namespace MaktabaDesktop
                 MessageBox.Show("you Must Select a Row first");
             
 
+        }
+
+        private void RevenueBtn_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (Global.admin.Admin_ID == "2")
+            {
+                ItemInCartList itemInCartList = new ItemInCartList();
+                itemInCartList.Delete();
+                MessageBox.Show("Carts has been cleand ");
+            }
+            else
+                MessageBox.Show("not authorized");
+            
         }
     }
 }

@@ -24,23 +24,35 @@ namespace MaktabaDesktop
         private void ManageCatagories_Load(object sender, EventArgs e)
         {
             
-            catagoryList = new CatagoryList();
+            
             loadCatagoryTable();
 
         }
         public void loadCatagoryTable()
         {
+            catagoryList = new CatagoryList();
             catagoryList.Populate();
             dataGridView1.DataSource = catagoryList.DataTable;
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            string catagoryID = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-            catagory = new Catagory(catagoryID);
-            catagoryList.Populate(catagory);
-            CatagoryNameText.Text = catagory.catagory_name;
-            catagoryDescText.Text = catagory.catagory_description;
+            try
+            {
+                if (dataGridView1.RowCount != 0)
+                {
+                    string catagoryID = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                    catagory = new Catagory(catagoryID);
+                    catagoryList.Populate(catagory);
+                    CatagoryNameText.Text = catagory.catagory_name;
+                    catagoryDescText.Text = catagory.catagory_description;
+                }
+                else
+                    MessageBox.Show("No data to display");
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
         public void loadDataInCatagory()
         {
@@ -181,6 +193,10 @@ namespace MaktabaDesktop
             catagoryDescText.Text = null;
             
         }
-        
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

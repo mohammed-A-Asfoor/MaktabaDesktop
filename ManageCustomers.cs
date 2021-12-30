@@ -39,29 +39,42 @@ namespace MaktabaDesktop
 
         private void customersTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //making sure that Address section is cleared
-            AddresssTextList.Items.Clear();
-            addresses = null;
-            streetText.Text = null;
-            blockText.Text = null;
-            HouseText.Text = null;
-            cityText.Text = null;
-            countryText.Text = null;
-            //getting Customer ID
-            string customerID = customersTable.CurrentRow.Cells[0].Value.ToString();
-            customer = new customer(customerID);
+            try
+            {
+                if (customersTable.RowCount != 0)
+                {
+                    //making sure that Address section is cleared
+                    AddresssTextList.Items.Clear();
+                    addresses = null;
+                    streetText.Text = null;
+                    blockText.Text = null;
+                    HouseText.Text = null;
+                    cityText.Text = null;
+                    countryText.Text = null;
+                    //getting Customer ID
+                    string customerID = customersTable.CurrentRow.Cells[0].Value.ToString();
+                    customer = new customer(customerID);
 
-            //creating customer Object
-            customerList.Populate(customer);
+                    //creating customer Object
+                    customerList.Populate(customer);
 
-            //filling the text boxes
-            customerFNameText.Text = customer.Customer_fname;
-            customerLNameText.Text = customer.customer_lname;
-            CustomerPhoneText.Text = customer.Customer_Phone;
-            CustomerEmail.Text = customer.Customer_Email;
-            CustomerPasswordText.Text = customer.Customer_password;
-            customerbirthDatePicker.Value = Convert.ToDateTime(customer.Customer_DOB);
-            loadAddress();
+                    //filling the text boxes
+                    customerFNameText.Text = customer.Customer_fname;
+                    customerLNameText.Text = customer.customer_lname;
+                    CustomerPhoneText.Text = customer.Customer_Phone;
+                    CustomerEmail.Text = customer.Customer_Email;
+                    CustomerPasswordText.Text = customer.Customer_password;
+                    customerbirthDatePicker.Value = Convert.ToDateTime(customer.Customer_DOB);
+                    loadAddress();
+                }
+                else
+                {
+                    MessageBox.Show("No Data to Display");
+                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
         public void loadAddress()
         {
@@ -108,6 +121,7 @@ namespace MaktabaDesktop
         }
         public void loadCustomerTable()
         {
+            customerList = new CustomerList();
             customerList.Populate();
             customersTable.DataSource = customerList.DataTable;
         }
@@ -266,14 +280,48 @@ namespace MaktabaDesktop
 
         private void SearchBtn_Click(object sender, EventArgs e)
         {
-            try
+            //check if Value TextBox is Not Empty
+            if (!string.IsNullOrWhiteSpace(valueText.Text))
             {
-                customerList.Filter(comboBox1.SelectedItem.ToString(), valueText.Text);
-            }catch(Exception ex)
-            {
-                MessageBox.Show("Error: " + ex);
+
+
+                if (comboBox1.SelectedIndex == 3)
+                {
+                    DateTime date;
+                    bool isDate = DateTime.TryParse(valueText.Text, out date);
+                    if (isDate)
+                    {
+                        customerList.Filter(comboBox1.SelectedItem.ToString(), date.ToString("yyyy/MM/dd"));
+                    }
+                    else
+                        MessageBox.Show("Wrong Data Type. you should enter Date");
+                }
+                else if (comboBox1.SelectedIndex == 0)
+                {
+                    int num;
+                    bool isInt = int.TryParse(valueText.Text, out num);
+                    if (isInt)
+                    {
+                        customerList.Filter(comboBox1.SelectedItem.ToString(), valueText.Text);
+                    }
+                    else
+                        MessageBox.Show("the Value should be Number");
+                }
+                else
+                    try
+                    {
+                        customerList.Filter(comboBox1.SelectedItem.ToString(), valueText.Text);
+                    }catch(Exception ex)
+                    {
+                        MessageBox.Show("Error:" + ex.Message);
+                    }
+                    
+
+
             }
-            customersTable.DataSource = customerList.DataTable;
+            else
+                MessageBox.Show("Empty Feild");
+            
         }
 
         private void ClearTable_Click(object sender, EventArgs e)
@@ -326,10 +374,10 @@ namespace MaktabaDesktop
                         }
                     }
                     else
-                        MessageBox.Show("empty fields");
+                        MessageBox.Show("Empty Field");
                 }
                 else
-                    MessageBox.Show("click Clear and try Agian");
+                    MessageBox.Show("Click Clear and try Agian");
             }
             else
                 MessageBox.Show("You Need to Select a Customer Then Add the Address.");
@@ -426,6 +474,11 @@ namespace MaktabaDesktop
             }
             else
                 MessageBox.Show("You Need to Select a Customer Then Select An Address to Delete the Address.");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            loadCustomerTable();
         }
     }
 }

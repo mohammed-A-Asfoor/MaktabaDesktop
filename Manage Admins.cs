@@ -37,16 +37,27 @@ namespace MaktabaDesktop
         }
         public void LoadAdminTable()
         {
+            adminList = new AdminList();
             adminList.Populate();
             AdminTable.DataSource = adminList.DataTable;
         }
 
         private void AdminTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            string AdminID = AdminTable.CurrentRow.Cells[0].Value.ToString();
-            admin = new Admin(AdminID);
-            adminList.Populate(admin);
-            loadAdminData();
+            try
+            {
+                if (AdminTable.RowCount != 0)
+                {
+                    string AdminID = AdminTable.CurrentRow.Cells[0].Value.ToString();
+                    admin = new Admin(AdminID);
+                    adminList.Populate(admin);
+                    loadAdminData();
+                } else
+                    MessageBox.Show("No Admins to show");
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
 
         }
         public void loadAdminData()
@@ -95,7 +106,7 @@ namespace MaktabaDesktop
                     }
                 }
                 else
-                    MessageBox.Show("empty fields");
+                    MessageBox.Show("Empty Field");
             }
             else
                 MessageBox.Show("You Need to Cilck Clear and Try Agin");
@@ -109,7 +120,7 @@ namespace MaktabaDesktop
                 {
 
 
-                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to Edtit This Admin?", "Edting Admin "+admin.Admin_Name, MessageBoxButtons.YesNo);
+                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to Edit This Admin?", "Editing Admin " + admin.Admin_Name, MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
                         
@@ -135,7 +146,7 @@ namespace MaktabaDesktop
                     }
                 }
                 else
-                    MessageBox.Show("empty fields");
+                    MessageBox.Show("Empty Field");
             }
             else
                 MessageBox.Show("You Need to Select A Record First");
@@ -145,7 +156,13 @@ namespace MaktabaDesktop
         {
             if (admin != null)
             {
-                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to Delete This AdminAdmin?", "Deleting Admin "+admin.Admin_Name, MessageBoxButtons.YesNo);
+                if (admin.Admin_ID == "2")
+                {
+                    MessageBox.Show("You can't Delete Super User");
+                }
+                else
+                {
+                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to Delete This Admin", "Deleting Admin " + admin.Admin_Name, MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
 
@@ -166,14 +183,20 @@ namespace MaktabaDesktop
                         else
                         {
                             MessageBox.Show("admin " + admin.Admin_Name + " Was Deleted");
-                        admin = null;
+                            admin = null;
                             LoadAdminTable();
                         }
                     }
-                
+
+                }
             }
             else
                 MessageBox.Show("You Need to Select A Record First");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -37,6 +37,7 @@ namespace MaktabaDesktop
 
         private void Manage_Orders_Load(object sender, EventArgs e)
         {
+            //creating objects
             customerList = new CustomerList();
             bookList = new BookList();
             bookItemList = new BookItemList();
@@ -44,7 +45,7 @@ namespace MaktabaDesktop
             orderBooks = new List<BookItem>();
             book = new Book();
             customer = new customer();
-
+            //getting the coumn manes for search
             bookList.getColumnName(book);
             customerList.getColumnName(customer);
 
@@ -55,7 +56,7 @@ namespace MaktabaDesktop
             booksColumnNames.DataSource = bookList.ColumnNames;
             
 
-
+            //loading tables 
             loadCustomerTable();
             loadBooksTable();
             ISBAN = BooksTable.CurrentRow.Cells[0].Value.ToString();
@@ -71,7 +72,7 @@ namespace MaktabaDesktop
                 customer = new customer(customerID);
                 customerList.Populate(customer);
                 loadCustomerData();
-
+               
                 //looading Book List
                 book_ListList = new Book_ListList();
                 book_ListList.Filter("Order_id", order.Order_id);
@@ -85,6 +86,7 @@ namespace MaktabaDesktop
                 }
                 
                 loadorderBooks();
+                loadTotalPrice();
             }
         }
         public void loadCustomerTable() {
@@ -114,21 +116,40 @@ namespace MaktabaDesktop
 
         private void BooksTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            string ISBN = BooksTable.CurrentRow.Cells[0].Value.ToString();
-            
-            bookItemList.Filter("ISBAN", ISBN);
+            try
+            {
+                if (BooksTable.RowCount != 0)
+                {
+                    string ISBN = BooksTable.CurrentRow.Cells[0].Value.ToString();
+
+                    bookItemList.Filter("ISBAN", ISBN);
+                }
+                else
+                    MessageBox.Show("No data to display");
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
 
         private void BookItemTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //getting the bookitem id 
-            string bookitemID = BookItemTable.CurrentRow.Cells[0].Value.ToString();
-            bookItem = new BookItem(bookitemID);
-            //creating and populating the Book item Object
-            loadIntoBookInfo();
-            
-            
-          
+            try
+            {
+                if (BookItemTable.RowCount != 0)
+                {
+                    //getting the bookitem id 
+                    string bookitemID = BookItemTable.CurrentRow.Cells[0].Value.ToString();
+                    bookItem = new BookItem(bookitemID);
+                    //creating and populating the Book item Object
+                    loadIntoBookInfo();
+                }
+                else
+                    MessageBox.Show("No data to Display");
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
         public void loadIntoBookInfo()
         {
@@ -240,17 +261,30 @@ namespace MaktabaDesktop
 
         private void CustomerTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //getting the CustomerID form the Table
-              customerID = CustomerTable.CurrentRow.Cells[0].Value.ToString();
-            //ceating the customer object
-            customer = new customer(customerID);
-            customerList.Populate(customer);
-            loadCustomerData();
+            try
+            {
+                if (CustomerTable.RowCount != 0)
+                {
+                    //getting the CustomerID form the Table
+                    customerID = CustomerTable.CurrentRow.Cells[0].Value.ToString();
+                    //ceating the customer object
+                    customer = new customer(customerID);
+                    customerList.Populate(customer);
+                    loadCustomerData();
+                }
+                else
+                    MessageBox.Show("No Data to show");
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
 
          
         }
         public void loadCustomerData()
         {
+            listbox2.DataSource = null;
+            listbox2.Items.Clear();
             //setting textboxs values
             CustomerNameText.Text = customer.Customer_fname + " " + customer.customer_lname;
             customerEmailText.Text = customer.Customer_Email;
@@ -260,21 +294,36 @@ namespace MaktabaDesktop
 
             addressesList = new AddressesList();
             addressesList.Filter("CustomerID", customer.customerID);
-            listbox2.DataSource = addressesList.List;
-            listbox2.SelectedIndex = 0;
+                
+            if (addressesList.List.Count != 0)
+            {
+                listbox2.DataSource = addressesList.List;
+                listbox2.SelectedIndex = 0;
+            }
+            else
+            {
+                addresses = null;
+                MessageBox.Show("You Must Add an address to this Customer");
+            }
+               
         }
 
         private void listbox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            addresses = (Addresses)listbox2.SelectedItem;
-            MessageBox.Show("aDdres" + addresses.House);
+            if (listbox2.DataSource!=null)
+            {
+                addresses = (Addresses)listbox2.SelectedItem;
+                
+            }
+           
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
-            if (bookItem != null || book!=null || book_List!=null)
+            //validation
+            if (bookItem != null && book != null && orderBooks.Count != 0 )
             {
-                if (customer != null || addresses != null)
+                if (customer != null && addresses != null)
                 {
 
                     
@@ -307,11 +356,23 @@ namespace MaktabaDesktop
                                     book_List.Quantity = bookItem1.Quantity;
 
                                     book_ListList.Add(book_List);
-
+                                    bookItem = new BookItem(bookItem1.Book_Itme_id);
+                                    bookItemList.Populate(bookItem);
                                     //editing the stock
                                     bookItem.Quantity = (Convert.ToInt32(bookItem.Quantity) - Convert.ToInt32(bookItem1.Quantity)).ToString();
-                                    MessageBox.Show("\\" + bookItem.Quantity);
-                                    bookItemList.Update(bookItem);
+                                    //editing date format
+                                    DateTime date;
+                                    bool isDate = DateTime.TryParse(bookItem.Adding_date, out date);
+                                    if (isDate)
+                                    {
+                                        bookItem.Adding_date = date.ToString("yyyy/MM/dd");
+                                        bookItemList.Update(bookItem);
+                                        
+                                    }
+                                    else
+                                        MessageBox.Show("Something went wrong, Delete the order and try again");
+                                   
+                                   
                                 }
 
                             }
@@ -337,10 +398,26 @@ namespace MaktabaDesktop
                                     book_ListList.Add(book_List);
 
                                     //editing the stock
-                                    bookItem.Quantity = (Convert.ToInt32(bookItem.Quantity) - Convert.ToInt32(bookItem1.Quantity)).ToString();
-                                    MessageBox.Show("\\" + bookItem.Quantity);
-                                    bookItemList.Update(bookItem);
+                                    bookItem = new BookItem(bookItem1.Book_Itme_id);
+                                    bookItemList.Populate(bookItem);
+                                    //for edit. we check if the stock is 0 
+                                    if (bookItem.Quantity != "0")
+                                    {
+                                        bookItem.Quantity = (Convert.ToInt32(bookItem.Quantity) - Convert.ToInt32(bookItem1.Quantity)).ToString();
+                                        //editing date format
+                                        DateTime date;
+                                        bool isDate = DateTime.TryParse(bookItem.Adding_date, out date);
+                                        if (isDate)
+                                        {
+                                            bookItem.Adding_date = date.ToString("yyyy/MM/dd");
+                                            bookItemList.Update(bookItem);
 
+                                        }
+                                        else
+                                            MessageBox.Show("Something went wrong, Delete the order and try again");
+                                    }
+                                    
+                                    
 
 
                                 }
@@ -370,7 +447,7 @@ namespace MaktabaDesktop
                     MessageBox.Show("You Must Selece a customer and an address");
             }
             else
-                MessageBox.Show("You Must Seelct a BookITem First");
+                MessageBox.Show("Something is Empty");
         }
 
         private void discountText_TextChanged(object sender, EventArgs e)
@@ -455,7 +532,7 @@ namespace MaktabaDesktop
 
                     if (isDate)
                     {
-                        bookList.Filter(booksColumnNames.SelectedItem.ToString(), bookSearchValueText.Text);
+                        bookList.Filter(booksColumnNames.SelectedItem.ToString(), date.ToString("yyyy/MM/dd"));
 
                     }
                     else

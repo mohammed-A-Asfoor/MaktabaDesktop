@@ -93,7 +93,6 @@ namespace MaktabaDesktop
             this.OrderColumnNames = new System.Windows.Forms.ComboBox();
             this.orderSearchValueText = new System.Windows.Forms.TextBox();
             this.DeleteOrderBtn = new System.Windows.Forms.Button();
-            this.EditOrderBtn = new System.Windows.Forms.Button();
             this.AddNewOrder = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.searchOrderBtn = new System.Windows.Forms.Button();
@@ -101,8 +100,8 @@ namespace MaktabaDesktop
             this.label12 = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.AdminsBtn = new System.Windows.Forms.Button();
             this.ManagediscountCodesBtn = new System.Windows.Forms.Button();
             this.ManageCustomersBtn = new System.Windows.Forms.Button();
@@ -110,7 +109,6 @@ namespace MaktabaDesktop
             this.booksBtn = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.StatusBtn = new System.Windows.Forms.Button();
-            this.RevenueBtn = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -735,7 +733,6 @@ namespace MaktabaDesktop
             this.panel8.Controls.Add(this.OrderColumnNames);
             this.panel8.Controls.Add(this.orderSearchValueText);
             this.panel8.Controls.Add(this.DeleteOrderBtn);
-            this.panel8.Controls.Add(this.EditOrderBtn);
             this.panel8.Controls.Add(this.AddNewOrder);
             this.panel8.Controls.Add(this.label11);
             this.panel8.Controls.Add(this.searchOrderBtn);
@@ -749,7 +746,7 @@ namespace MaktabaDesktop
             // 
             // createPDFBtn
             // 
-            this.createPDFBtn.Location = new System.Drawing.Point(241, 104);
+            this.createPDFBtn.Location = new System.Drawing.Point(240, 82);
             this.createPDFBtn.Name = "createPDFBtn";
             this.createPDFBtn.Size = new System.Drawing.Size(75, 23);
             this.createPDFBtn.TabIndex = 41;
@@ -775,23 +772,13 @@ namespace MaktabaDesktop
             // 
             // DeleteOrderBtn
             // 
-            this.DeleteOrderBtn.Location = new System.Drawing.Point(241, 75);
+            this.DeleteOrderBtn.Location = new System.Drawing.Point(240, 51);
             this.DeleteOrderBtn.Name = "DeleteOrderBtn";
             this.DeleteOrderBtn.Size = new System.Drawing.Size(75, 23);
             this.DeleteOrderBtn.TabIndex = 33;
             this.DeleteOrderBtn.Text = "Delete";
             this.DeleteOrderBtn.UseVisualStyleBackColor = true;
             this.DeleteOrderBtn.Click += new System.EventHandler(this.DeleteOrderBtn_Click);
-            // 
-            // EditOrderBtn
-            // 
-            this.EditOrderBtn.Location = new System.Drawing.Point(241, 45);
-            this.EditOrderBtn.Name = "EditOrderBtn";
-            this.EditOrderBtn.Size = new System.Drawing.Size(75, 23);
-            this.EditOrderBtn.TabIndex = 32;
-            this.EditOrderBtn.Text = "Edit";
-            this.EditOrderBtn.UseVisualStyleBackColor = true;
-            this.EditOrderBtn.Click += new System.EventHandler(this.EditOrderBtn_Click);
             // 
             // AddNewOrder
             // 
@@ -852,7 +839,6 @@ namespace MaktabaDesktop
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -862,18 +848,9 @@ namespace MaktabaDesktop
             this.tabControl1.Size = new System.Drawing.Size(1358, 54);
             this.tabControl1.TabIndex = 0;
             // 
-            // tabPage1
-            // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 24);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1350, 26);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "File";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button1);
             this.tabPage2.Controls.Add(this.AdminsBtn);
             this.tabPage2.Controls.Add(this.ManagediscountCodesBtn);
             this.tabPage2.Controls.Add(this.ManageCustomersBtn);
@@ -886,6 +863,17 @@ namespace MaktabaDesktop
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Manage";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.ForeColor = System.Drawing.Color.Red;
+            this.button1.Location = new System.Drawing.Point(620, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(199, 27);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Delete Items In cart";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // AdminsBtn
             // 
@@ -940,7 +928,6 @@ namespace MaktabaDesktop
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.StatusBtn);
-            this.tabPage4.Controls.Add(this.RevenueBtn);
             this.tabPage4.Location = new System.Drawing.Point(4, 24);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
@@ -951,22 +938,13 @@ namespace MaktabaDesktop
             // 
             // StatusBtn
             // 
-            this.StatusBtn.Location = new System.Drawing.Point(80, 0);
+            this.StatusBtn.Location = new System.Drawing.Point(0, 0);
             this.StatusBtn.Name = "StatusBtn";
             this.StatusBtn.Size = new System.Drawing.Size(75, 23);
             this.StatusBtn.TabIndex = 1;
             this.StatusBtn.Text = "Stattistis";
             this.StatusBtn.UseVisualStyleBackColor = true;
             this.StatusBtn.Click += new System.EventHandler(this.StatusBtn_Click);
-            // 
-            // RevenueBtn
-            // 
-            this.RevenueBtn.Location = new System.Drawing.Point(-1, 0);
-            this.RevenueBtn.Name = "RevenueBtn";
-            this.RevenueBtn.Size = new System.Drawing.Size(75, 23);
-            this.RevenueBtn.TabIndex = 0;
-            this.RevenueBtn.Text = "Revenue";
-            this.RevenueBtn.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -1048,7 +1026,6 @@ namespace MaktabaDesktop
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.TextBox orderSearchValueText;
         private System.Windows.Forms.Button DeleteOrderBtn;
-        private System.Windows.Forms.Button EditOrderBtn;
         private System.Windows.Forms.Button AddNewOrder;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button searchOrderBtn;
@@ -1069,9 +1046,14 @@ namespace MaktabaDesktop
         private System.Windows.Forms.Button RefreashBookItemBtn;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.ListBox bookListforOrder;
+        private System.Windows.Forms.ComboBox OrderColumnNames;
+        private System.Windows.Forms.ComboBox bookitemcolumnNames;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button createPDFBtn;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button AdminsBtn;
         private System.Windows.Forms.Button ManagediscountCodesBtn;
         private System.Windows.Forms.Button ManageCustomersBtn;
@@ -1079,11 +1061,5 @@ namespace MaktabaDesktop
         private System.Windows.Forms.Button booksBtn;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Button StatusBtn;
-        private System.Windows.Forms.Button RevenueBtn;
-        private System.Windows.Forms.ListBox bookListforOrder;
-        private System.Windows.Forms.ComboBox OrderColumnNames;
-        private System.Windows.Forms.ComboBox bookitemcolumnNames;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button createPDFBtn;
     }
 }

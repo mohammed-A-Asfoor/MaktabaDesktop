@@ -89,6 +89,7 @@ namespace MaktabaDesktop
                 quantitiyNum.Value = Convert.ToInt16(bookItem.Quantity);
                 PriceText.Text = bookItem.Book_price;
                 pictureBox1.ImageLocation = bookItem.Image;
+               
                 //setting condition from the condition list
                 int Index = 0;
                 while (conditionList.Items.Count <= Index)
@@ -114,6 +115,7 @@ namespace MaktabaDesktop
         }
         public void  loadBooksTable()
         {
+            bookItemList = new BookItemList();
             bookList.Populate();
             BooksTable.DataSource = bookList.DataTable ;
         }
@@ -137,9 +139,9 @@ namespace MaktabaDesktop
             bookItem.Quantity = quantitiyNum.Value.ToString();
             bookItem.Admin_ID = Global.admin.Admin_ID;
             bookItem.Adding_date = DateTime.Now.ToString("yyyy/MM/dd");
-            valueText.Text = DateTime.Now.ToString();
+            
             bookItem.Condition = conditionList.SelectedItem.ToString();
-            pictureBox1.ImageLocation = bookItem.Image;
+            bookItem.Image=pictureBox1.ImageLocation;
             double bookPrice;
             bool isConvertedD = Double.TryParse(PriceText.Text, out bookPrice);
             if (isConvertedD)
@@ -206,7 +208,7 @@ namespace MaktabaDesktop
 
                         if (bookItem.getVaild())
                         {
-                            MessageBox.Show("Adding is Sucssfull");
+                            MessageBox.Show("Adding is Successful");
                             bookItem = null;
                             this.Close();
                         }
@@ -225,14 +227,14 @@ namespace MaktabaDesktop
                         bookItemList.Update(bookItem);
                         if (bookItem.getVaild())
                         {
-                            MessageBox.Show("Adding is Sucssfull");
+                            MessageBox.Show("Editing is Successful");
                             ManageBookItems frm = new ManageBookItems();
                             frm.Close();
                         }
                         else
                         {
 
-                            MessageBox.Show("ERRRO: " + bookItem.getErroMessage());
+                            MessageBox.Show("Error: " + bookItem.getErroMessage());
                         }
                         bookItem = null;
                     }
@@ -265,7 +267,7 @@ namespace MaktabaDesktop
                     bool isDate = DateTime.TryParse(valueText.Text, out date);
                     if (isDate)
                     {
-                        bookList.Filter(columnList.SelectedItem.ToString(), valueText.Text);
+                        bookList.Filter(columnList.SelectedItem.ToString(), date.ToString("yyyy/MM/dd"));
                     }
                     else
                         MessageBox.Show("Wrong Data Type. you should enter Date");
@@ -278,14 +280,14 @@ namespace MaktabaDesktop
                         bookList.Filter(columnList.SelectedItem.ToString(), valueText.Text);
                     }
                     else
-                        MessageBox.Show("the Value should be Number");
+                        MessageBox.Show("Wrong Data Type. you should enter a Number");
                 }else
                     bookList.Filter(columnList.SelectedItem.ToString(), valueText.Text);
 
 
             }
             else
-                MessageBox.Show("Empty Feild");
+                MessageBox.Show("Empty Field");
         }
 
         private void clearTableBtn_Click(object sender, EventArgs e)
@@ -316,6 +318,11 @@ namespace MaktabaDesktop
         private void button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void RefreashBtn_Click(object sender, EventArgs e)
+        {
+            loadBooksTable();
         }
     }
 }

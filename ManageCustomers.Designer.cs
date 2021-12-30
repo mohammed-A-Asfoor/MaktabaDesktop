@@ -30,6 +30,7 @@ namespace MaktabaDesktop
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.customersTable = new System.Windows.Forms.DataGridView();
@@ -75,6 +76,7 @@ namespace MaktabaDesktop
             this.AddBtn = new System.Windows.Forms.Button();
             this.ClearBtn = new System.Windows.Forms.Button();
             this.DeleteBtn = new System.Windows.Forms.Button();
+            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersTable)).BeginInit();
             this.panel3.SuspendLayout();
@@ -86,11 +88,23 @@ namespace MaktabaDesktop
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label14);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(855, 89);
             this.panel1.TabIndex = 0;
+            // 
+            // label14
+            // 
+            this.label14.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label14.Location = new System.Drawing.Point(0, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(855, 51);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "Manage Customers Information";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel2
             // 
@@ -108,8 +122,9 @@ namespace MaktabaDesktop
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 33);
             this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
+            this.button1.Text = "Reload";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // customersTable
             // 
@@ -179,7 +194,7 @@ namespace MaktabaDesktop
             // 
             this.CustomerPasswordText.Location = new System.Drawing.Point(479, 99);
             this.CustomerPasswordText.Name = "CustomerPasswordText";
-            this.CustomerPasswordText.Size = new System.Drawing.Size(100, 23);
+            this.CustomerPasswordText.Size = new System.Drawing.Size(128, 23);
             this.CustomerPasswordText.TabIndex = 22;
             // 
             // label5
@@ -195,7 +210,7 @@ namespace MaktabaDesktop
             // 
             this.CustomerEmail.Location = new System.Drawing.Point(479, 62);
             this.CustomerEmail.Name = "CustomerEmail";
-            this.CustomerEmail.Size = new System.Drawing.Size(100, 23);
+            this.CustomerEmail.Size = new System.Drawing.Size(128, 23);
             this.CustomerEmail.TabIndex = 20;
             // 
             // label4
@@ -211,7 +226,7 @@ namespace MaktabaDesktop
             // 
             this.CustomerPhoneText.Location = new System.Drawing.Point(479, 21);
             this.CustomerPhoneText.Name = "CustomerPhoneText";
-            this.CustomerPhoneText.Size = new System.Drawing.Size(100, 23);
+            this.CustomerPhoneText.Size = new System.Drawing.Size(128, 23);
             this.CustomerPhoneText.TabIndex = 18;
             // 
             // label3
@@ -219,9 +234,9 @@ namespace MaktabaDesktop
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(20, 108);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(110, 15);
+            this.label3.Size = new System.Drawing.Size(113, 15);
             this.label3.TabIndex = 17;
-            this.label3.Text = "Customer BirthDay:";
+            this.label3.Text = "Customer Birth Day:";
             // 
             // label2
             // 
@@ -546,6 +561,7 @@ namespace MaktabaDesktop
             this.Name = "ManageCustomers";
             this.Text = "ManageCustomers";
             this.Load += new System.EventHandler(this.ManageCustomers_Load);
+            this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.customersTable)).EndInit();
             this.panel3.ResumeLayout(false);
@@ -609,5 +625,6 @@ namespace MaktabaDesktop
         private System.Windows.Forms.Button DeleteBtn;
         private System.Windows.Forms.TextBox Customer;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label14;
     }
 }
